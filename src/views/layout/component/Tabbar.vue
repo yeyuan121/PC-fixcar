@@ -41,6 +41,10 @@ methods: {
             this.$router.push('./monitor')
         }else if(i == 6){
             this.$router.push('/other')
+        }else if(i == 9){
+            this.$router.push('/about')
+        }else if(i == 19){
+            this.$router.push('./login')
         }
     }
 },

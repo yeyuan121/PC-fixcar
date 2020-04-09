@@ -1,11 +1,21 @@
 <template>
   <div id="app">
-    <Tab />
-    <Swipe />
-    <Forms />
+    <Tab 
+    v-if="$route.path != '/login'"
+    />
+    <Swipe 
+    v-if="$route.path != '/login'"
+    />
+    <Forms 
+    v-if="$route.path != '/login'"
+    />
     <router-view/>
-    <Message />
-    <Footer />
+    <Message 
+    v-if="$route.path != '/login'"
+    />
+    <Footer 
+    v-if="$route.path != '/login'"
+    />
   </div>
 </template>
 <script>

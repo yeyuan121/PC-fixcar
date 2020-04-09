@@ -28,6 +28,14 @@ Vue.use(VueRouter)
   {
     path:'/other',
     component:() => import('../views/other/Other.vue')
+  },
+  {
+    path:'/about',
+    component:() => import('../views/about/About.vue')
+  },
+  {
+    path:'/login',
+    component:() => import('../views/login/Login.vue')
   }
 ]
 
