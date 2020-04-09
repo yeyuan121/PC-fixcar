@@ -1,0 +1,90 @@
+<template>
+<div class='container'>
+    <div style="height:0.5rem;display:flex;align-items:center;width:0.85rem;"><img src="@/assets/img/logo.png" alt=""></div>
+    <div @click="handleClick(1)" :class="{add:current == 1}">首页</div>
+    <div @click="handleClick(2)" :class="{add:current == 2}">电脑维修</div>
+    <div @click="handleClick(3)" :class="{add:current == 3}">网络维修</div>
+    <div @click="handleClick(4)" :class="{add:current == 4}">办公设备</div>
+    <div @click="handleClick(5)" :class="{add:current == 5}">监控设备</div>
+    <div @click="handleClick(6)" :class="{add:current == 6}">其他产品</div>
+    <div @click="handleClick(7)" :class="{add:current == 7}">服务^</div>
+    <div @click="handleClick(8)" :class="{add:current == 8}">案例资讯</div>
+    <div @click="handleClick(9)" :class="{add:current == 9}">关于我们^</div>
+    <div @click="handleClick(19)" :class="{add:current == 19}" style="width:0.8rem;">
+        <img src="@/assets/img/1.png" alt="">
+        登录/注册
+    </div>
+
+    <div></div>
+    <div></div>
+</div>
+</template>
+
+<script>
+export default {
+data() {
+return {
+    current:0,
+}
+},
+//方法集合
+methods: {
+    handleClick(i){
+        this.current = i
+        if(i == 2){
+            this.$router.push('/computer')
+        }else if(i == 3){
+            this.$router.push('/network')
+        }else if(i == 4){
+            this.$router.push('./work')
+        }else if(i == 5){
+            this.$router.push('./monitor')
+        }else if(i == 6){
+            this.$router.push('/other')
+        }
+    }
+},
+//监听属性 类似于data概念
+computed: {},
+//监控data中的数据变化
+watch: {},
+//注册组件
+components: {},
+//生命周期 - 创建完成（可以访问当前this实例）
+created() {
+
+},
+//生命周期 - 挂载完成（可以访问DOM元素）
+mounted() {
+
+},
+}
+</script>
+<style lang='scss' scoped>
+.container{
+    width: 100%;
+    box-sizing: border-box;
+    height: 0.92rem;
+    background: rgba(1,1,1,0);
+    padding-left: 4.1rem;
+    padding-right: 4rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    div{
+        height: 0.21rem;
+        width: 0.65rem;
+        font-size: 0.12rem;
+        color: white;
+        text-align: center;
+        cursor: pointer;
+    }
+}
+.add{
+    color: red !important;
+}
+</style>
