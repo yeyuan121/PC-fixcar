@@ -76,7 +76,7 @@ mounted() {
     background: rgba(1,1,1,0);
     padding-left: 4.1rem;
     padding-right: 4rem;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 999;
