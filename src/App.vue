@@ -10,9 +10,6 @@
     v-if="$route.path != '/login'"
     />
     <router-view/>
-    <Message 
-    v-if="$route.path != '/login'"
-    />
     <Footer 
     v-if="$route.path != '/login'"
     />

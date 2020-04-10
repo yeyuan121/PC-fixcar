@@ -11,6 +11,7 @@
             />
         </div>
         <Notice />
+        <Message />
     </div>
 </template>
 
@@ -18,6 +19,7 @@
 import Title from './component/Title'
 import Item from './component/Item'
 import Notice from './component/Notice'
+import Message from '../layout/component/Message'
 
 export default {
 data() {
@@ -57,7 +59,7 @@ computed: {},
 //监控data中的数据变化
 watch: {},
 //注册组件
-components: {Title,Item,Notice,},
+components: {Title,Item,Notice,Message,},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
 

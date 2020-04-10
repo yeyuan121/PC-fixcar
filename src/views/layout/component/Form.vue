@@ -10,11 +10,11 @@
             </span>
         </div>
         <div class="class2">
-            <input type="text" name="b1" id="" placeholder='输入手机号码'>
-            <input type="text" name="b2" id="" placeholder='输入验证码'>
-            <input type="text" name="b3" id="" placeholder='输入地址'>
+            <input type="text" name="b1" id="" placeholder='输入手机号码' class="p4">
+            <input type="text" name="b2" id="" placeholder='输入验证码' class="p5">
+            <input type="text" name="b3" id="" placeholder='输入地址' class="p5">
             <input type="text" name="b4" id="" placeholder='选择故障类型' class="p4">
-            <input type="button" value="立即下单">
+            <div class="button">立即下单</div>
         </div>
         <div class="yzm">获取验证码</div>
     </div>
@@ -93,17 +93,18 @@ mounted() {
                 padding-left: 0.15rem;
                 border: 0px solid red;
             }
-            input[type='button']{
+            .button{
                 background: rgb(252, 72, 17);
                 height: 0.45rem;
                 color: white;
                 width: 1rem;
+                text-align: center;
+                line-height: 0.45rem;
+                border-radius: 0.03rem;
+                cursor: pointer;
             }
-            input[name='b2'],input[name='b3']{
-                width: 2.37rem;
-            }
-            input[name='p4']{
-                width: 1.38rem;
+            .p5{
+                flex: 1;
             }
             .p4{
                 width: 1.38rem;
@@ -114,7 +115,7 @@ mounted() {
             width: 1.08rem;
             position: absolute;
             top: 0.5rem;
-            left: 2.9rem;
+            left: 3.05rem;
             background: rgba(28, 28, 28,.1);
             border-radius: 0.03rem;
             line-height: 0.36rem;

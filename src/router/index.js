@@ -36,6 +36,10 @@ Vue.use(VueRouter)
   {
     path:'/login',
     component:() => import('../views/login/Login.vue')
+  },
+  {
+    path:'/serve',
+    component:() => import('../views/serve/Serve.vue')
   }
 ]
 

@@ -44,7 +44,11 @@ methods: {
         }else if(i == 9){
             this.$router.push('/about')
         }else if(i == 19){
-            this.$router.push('./login')
+            this.$router.push('/login')
+        }else if(i == 1){
+            this.$router.push('/')
+        }else if(i == 7){
+            this.$router.push('/serve')
         }
     }
 },

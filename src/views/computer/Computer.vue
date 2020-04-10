@@ -10,11 +10,14 @@
                 </div>
             </template>
         </CommonPartComponent>
+        <CommonMessageComponent 
+        />
     </div>
 </template>
 
 <script>
 import CommonPartComponent from '../../components/content/commonPartOne/CommonPartOne'
+import CommonMessageComponent from '../../components/content/commonMessageComponent/index'
 
 export default {
 data() {
@@ -53,7 +56,7 @@ computed: {},
 //监控data中的数据变化
 watch: {},
 //注册组件
-components: {CommonPartComponent,},
+components: {CommonPartComponent,CommonMessageComponent,},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
 

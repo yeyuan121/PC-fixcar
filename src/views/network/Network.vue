@@ -4,11 +4,13 @@
         item-title='网络维修具体有哪些项目?'
         :item-arr='arr'
         />
+        <CommonMessageComponent />
     </div>
 </template>
 
 <script>
 import CommonComponent from '../../components/content/commonPartOne/CommonPartOne'
+import CommonMessageComponent from '../../components/content/commonMessageComponent/index'
 
 export default {
 data() {
@@ -35,7 +37,7 @@ computed: {},
 //监控data中的数据变化
 watch: {},
 //注册组件
-components: {CommonComponent,},
+components: {CommonComponent,CommonMessageComponent,},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
 

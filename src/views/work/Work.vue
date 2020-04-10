@@ -8,11 +8,13 @@
                 喷墨打印机，激光打印机，扫描仪，投影仪，办公耗材等
             </template>
         </CommonComponent>
+        <CommonMsgComponent />
     </div>
 </template>
 
 <script>
 import CommonComponent from '../../components/content/commonPartOne/CommonPartOne'
+import CommonMsgComponent from '../../components/content/commonMessageComponent/index'
 
 export default {
 data() {
@@ -51,7 +53,7 @@ computed: {},
 //监控data中的数据变化
 watch: {},
 //注册组件
-components: {CommonComponent,},
+components: {CommonComponent,CommonMsgComponent,},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
 

@@ -10,8 +10,8 @@
                 <span>点击跳转</span>
             </div>
             <div class="child2">
-                <div class="childchild1">{{nowPrice}}</div>
-                <div class="childchild2">{{oldPrice}}</div>
+                <div class="childchild1"><span class="span1">￥</span>{{nowPrice}}</div>
+                <div class="childchild2">原价:￥<span class="span2">{{oldPrice}}</span></div>
             </div>
         </div>
     </div>
@@ -78,18 +78,30 @@ mounted() {
                 flex: 1;
             }
             .child2{
+                padding-top: 0.3rem;
+                box-sizing: border-box;
                 flex: 1;
                 overflow: hidden;
+                text-align: end;
                 .childchild1{
-                    height: 60%;
+                    display: flex;
+                    align-items: center;
+                    height: 0.28rem;
                     font-weight: bold;
+                    justify-content: flex-end;
                     font-size: 0.20rem;
                     color: rgb(252,94,46);
+                    .span1{
+                        font-size: 0.12rem;
+                    }
                 }
                 .childchild2{
-                    height: 40%;
+                    height: 0.2rem;
                     font-size: 0.13rem;
                     color: rgb(228,229,231);
+                    .span2{
+                        text-decoration: line-through;
+                    }
                 }
             }
         }

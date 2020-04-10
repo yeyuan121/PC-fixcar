@@ -1,7 +1,7 @@
 <template>
-    <div class='container'>
-        {{title}}
-    </div>    
+    <div class='colortab'>
+        {{text}}
+    </div>
 </template>
 
 <script>
@@ -16,7 +16,7 @@ methods: {
 
 },
 //接收props传值
-props: ['title'],
+props: ['text'],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化
@@ -34,14 +34,13 @@ mounted() {
 }
 </script>
 <style lang='scss' scoped>
-    .container{
-        height: 1.84rem;
-        padding-top: 1rem;
-        padding-left: 7.87rem;
-        padding-right: 7.87rem;
-        box-sizing: border-box;
-        font-size: 0.27rem;
-        white-space: nowrap;
-        text-align: center;
+    .colortab{
+        height: 0.31rem;
+        background: rgb(252,72,17);
+        font-size: 0.14rem;
+        color: white;
+        text-indent: 0.15rem;
+        line-height: 0.31rem;
+        border-radius: 0.04rem;
     }
 </style>

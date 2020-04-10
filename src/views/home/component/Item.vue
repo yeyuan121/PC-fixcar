@@ -54,7 +54,7 @@ mounted() {
             width: 90%;
             background: rgb(219, 225, 232);
             margin: 0 auto;
-            margin-top: 0.05rem;
+            margin-top: 0.0rem;
             border-radius: 0.003rem;
         }
         .div2{
@@ -70,11 +70,14 @@ mounted() {
             height: 0.2rem;
             text-align: center;
             font-size: 0.15rem;
-            color: rgb(52,62,75);
+            color: rgb(20,41,71);
         }
         .div4{
             height: 1rem;
-            color: rgb(36,38,39);
+            color: rgb(145,152,161);
+            font-size: 0.13rem;
+            line-height: 0.21rem;
+            margin-top: 0.1rem;
         }
         .div5{
             width: 0.82rem;
@@ -91,7 +94,7 @@ mounted() {
         }
         .add{
             position: absolute;
-            bottom: 0.05rem;
+            bottom: 0.0rem;
             left: 50%;
             transform: translateX(-50%);
             width: 1.68rem;
