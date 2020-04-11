@@ -3,6 +3,7 @@
         <CommonPartComponent
         item-title='电脑维修具体有哪些项目?'
         :item-arr='itemArr'
+        :history-recode-string='historyRecodeArr'
         >
             <template v-slot:slotbottom>
                 <div class="computermsg">
@@ -21,29 +22,40 @@ import CommonMessageComponent from '../../components/content/commonMessageCompon
 
 export default {
 data() {
-return {
-        itemArr:
-            [
-                '系统安装',
-                '开机无反应/黑屏',
-                '开关机速度慢',
-                '自动关机',
-                '电脑死机/蓝屏',
-                '电脑中毒',
-                '电脑进水',
-                '对话框报错',
-                '忘记密码解密',
-                '不能上网',
-                '网页打不开',
-                '更换配件',
-                '驱动丢失',
-                '键盘/鼠标失灵',
-                '无法识别设备',
-                '文件丢失',
-                '电脑没有声音',
-                '系统文件损坏'
-            ]
-}
+    return {
+            itemArr:
+                [
+                    '系统安装',
+                    '开机无反应/黑屏',
+                    '开关机速度慢',
+                    '自动关机',
+                    '电脑死机/蓝屏',
+                    '电脑中毒',
+                    '电脑进水',
+                    '对话框报错',
+                    '忘记密码解密',
+                    '不能上网',
+                    '网页打不开',
+                    '更换配件',
+                    '驱动丢失',
+                    '键盘/鼠标失灵',
+                    '无法识别设备',
+                    '文件丢失',
+                    '电脑没有声音',
+                    '系统文件损坏'
+                ],
+            historyRecodeArr:
+                [
+                    {
+                        name:'首页 > ',
+                        url:'/'
+                    },
+                    {
+                        name:'电脑维修',
+                        url:'/computer'
+                    }
+                ]
+    }
 },
 //方法集合
 methods: {

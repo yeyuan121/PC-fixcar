@@ -13,6 +13,16 @@
             <Item />
             <Item />
         </div>
+        <div class="page">
+            <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="1000"
+            prev-text='上一页'
+            next-text='下一页'
+            >
+            </el-pagination>
+        </div>
     </div>
 </template>
 
@@ -22,9 +32,9 @@ import Item from './component/Item'
 
 export default {
 data() {
-return {
+    return {
 
-}
+    }
 },
 //方法集合
 methods: {
@@ -59,6 +69,11 @@ mounted() {
             div{
                 margin-bottom: 0.3rem;
             }
+        }
+        .page{
+            color: red !important;
+            display: flex;
+            justify-content: center;
         }
     }
 </style>

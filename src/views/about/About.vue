@@ -1,5 +1,10 @@
 <template>
     <div class='container'>
+        <div class="div">
+            <i>当前位置 :</i>
+            <span class="span1" @click="toHome()">首页 > </span>
+            <span class="span2">关于我们</span>
+        </div>
         <div class="div1">
             <div class="div1child1">
                 关于厦门耐诚智能科技有限公司
@@ -72,7 +77,11 @@ data() {
     }
 },
 //方法集合
-methods: {},
+methods: {
+    toHome(){
+        this.$router.push('/')
+    }
+},
 //组件注册
 components: {},
 //组件传值
@@ -86,6 +95,21 @@ mounted() {}
 </script>
 <style lang='scss' scoped>
     .container{
+        .div{
+            padding: 0 3.6rem;
+            background: rgb(242,245,249);
+            height: 0.67rem;
+            line-height: 0.67rem;
+            font-size: 0.13rem;
+            color: rgb(151,158,167);
+            i{
+                font-style: inherit;
+                margin-right: 0.15rem;
+            }
+            span{
+                cursor: pointer;
+            }
+        }
         .div1{
             height: 4.65rem;
             padding: 0 3.6rem;

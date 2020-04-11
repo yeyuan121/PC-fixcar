@@ -2,6 +2,7 @@
     <div class='partone'>
         <Title 
         :title="itemTitle"
+        :history-string='historyRecodeString'
         />
         <div class="slot1">
             <slot name="slottop" />
@@ -34,7 +35,7 @@ methods: {
 
 },
 //接收props传值
-props: ['itemTitle','itemArr',],
+props: ['itemTitle','itemArr','historyRecodeString'],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化

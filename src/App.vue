@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <Tab 
-    v-if="$route.path != '/login'"
+    v-if="$route.path != '/login' && $route.path != '/register'"
     />
     <Swipe 
-    v-if="$route.path != '/login'"
+    v-if="$route.path != '/login' && $route.path != '/register'"
     />
     <Forms 
-    v-if="$route.path != '/login'"
+    v-if="$route.path != '/login' && $route.path != '/register'"
     />
     <router-view/>
     <Footer 
-    v-if="$route.path != '/login'"
+    v-if="$route.path != '/login' && $route.path != '/register'"
     />
   </div>
 </template>

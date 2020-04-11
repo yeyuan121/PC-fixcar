@@ -13,7 +13,6 @@
 <script>
 import { slider, slideritem } from 'vue-concise-slider'// import slider components
 export default {
-   el: '#app',
    data () {
       return {
         //Image list
@@ -65,13 +64,13 @@ export default {
     methods: {
       // Listener event
       slide (data) {
-        console.log(data)
+        //console.log(data)
       },
       onTap (data) {
-        console.log(data)
+        //console.log(data)
       },
       onInit (data) {
-        console.log(data)
+        //console.log(data)
       }
     }
 }

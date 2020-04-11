@@ -34,12 +34,16 @@
                     <img src="@/assets/img/sock.png" alt="">
                 </div>
                 <input type="text" name="" id="" placeholder="密码" v-model="password">
+                <div class="getcode" v-if="currentTab == 2">
+                    获取短信码
+                    <div class="getcodechild"></div>
+                </div>
             </div>
             <div class="child5"></div>
             <div class="child6">登陆</div>
             <div class="child7">
                 <div class="child7child1">其他账号登陆<img src="@/assets/img/qq.png" alt=""></div>            
-                <div class="child7child2">立即注册</div>
+                <div class="child7child2" @click="toRegister">立即注册</div>
             </div>
         </div>
     </div>
@@ -47,6 +51,7 @@
 
 <script>
 import { slider, slideritem } from 'vue-concise-slider'
+import FormBottom from './FormBottom'
 
 export default {
    data () {
@@ -73,7 +78,8 @@ export default {
     },
     components: {
       slider,
-      slideritem
+      slideritem,
+      FormBottom,
     },
     mounted () {
       let that = this
@@ -111,6 +117,9 @@ export default {
       },
       changeTab(i){
           this.currentTab = i
+      },
+      toRegister(){
+          this.$router.push('/register')
       }
     }
 }
@@ -202,6 +211,7 @@ export default {
                 display: flex;
                 align-items: flex-start;
                 margin-bottom: 0.2rem;
+                position: relative;
                 div{
                     width: 20%;
                     height: 105%;
@@ -221,6 +231,23 @@ export default {
                     border: 0px solid black;
                     font-size: 0.13rem;
                     outline: none;
+                }
+                .getcode{
+                    width: 1rem;
+                    height: 0.5rem;
+                    background: rgb(255,246,235);
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    font-size: 0.13rem;
+                    color: rgb(252,72,17);
+                    .getcodechild{
+                        width: 0.04rem;
+                        height: 0.5rem;
+                        background: white;
+                        position: absolute;
+                        left: -0.04rem;
+                    }
                 }
             }
             .child5{
@@ -263,6 +290,9 @@ export default {
                     height: 0.25rem;
                     margin-left: 0.15rem;
                 }
+            }
+            ::-webkit-input-placeholder {
+                color: rgb(229,182,167);
             }
         }
         .add{

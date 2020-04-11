@@ -3,6 +3,7 @@
         <CommonComponent 
         item-title='网络维修具体有哪些项目?'
         :item-arr='arr'
+        :history-recode-string='historyArr'
         />
         <CommonMessageComponent />
     </div>
@@ -23,6 +24,17 @@ data() {
             '网卡插错',
             '交换机停止工作',
             '网络正常,邮件发送出现异常'
+        ],
+        historyArr:
+        [
+            {
+                name:'首页 > ',
+                url:'/'
+            },
+            {
+                name:'网络维修',
+                url:'/network'
+            }
         ]
     }
 },

@@ -21,6 +21,8 @@ import Item from './component/Item'
 import Notice from './component/Notice'
 import Message from '../layout/component/Message'
 
+import {getRouting,} from '../../api/home'
+
 export default {
 data() {
     return {
@@ -62,7 +64,9 @@ watch: {},
 components: {Title,Item,Notice,Message,},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
-
+    getRouting().then(res=>{
+        console.log(res,2)
+    })
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {
