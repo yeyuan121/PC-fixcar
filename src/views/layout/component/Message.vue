@@ -5,7 +5,8 @@
             title-name='热门案例'
             />
             <img src="@/assets/img/tests.png" alt="" class="img">
-            <Item 
+            <Item
+            mark='HOT'
             title="1111111111"
             text='22222222222'
             />

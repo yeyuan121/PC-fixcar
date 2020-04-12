@@ -1,11 +1,11 @@
 <template>
     <div class='title'>
         <div class="titlediv1">
-            <div>价格透明杜绝乱收费</div>
+            <img src="@/assets/img/group1.png" alt="">
             <div class="line">|</div>
-            <div>拥有百位专业工程师</div>
+            <img src="@/assets/img/group2.png" alt="">
             <div class="line">|</div>
-            <div>一小时之内急速上门</div>
+            <img src="@/assets/img/group3.png" alt="">
         </div>
         <div class="titlediv2">
             了解故障类型高效解决问题
@@ -52,8 +52,13 @@ mounted() {
             display: flex;
             height: 0.36rem;
             justify-content: space-between;
+            align-items: center;
             font-size: 0.16rem;
             color: rgb(177, 183, 190);
+            img{
+                width: 1.8rem;
+                height: 0.27rem;
+            }
         }
         .titlediv2{
             height: 1.43rem;
@@ -61,7 +66,7 @@ mounted() {
             box-sizing: border-box;
             text-align: center;
             font-size: 0.3rem;
-            font-weight: bold;
+            // font-weight: bold;
             white-space: nowrap;
         }
     }

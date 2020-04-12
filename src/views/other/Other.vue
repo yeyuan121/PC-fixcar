@@ -15,8 +15,9 @@
         </div>
         <div class="page">
             <el-pagination
-            background
-            layout="prev, pager, next"
+            @current-change="handleCurrentChange"
+            :page-size="100"
+            layout="prev, pager, next, jumper"
             :total="1000"
             prev-text='上一页'
             next-text='下一页'
@@ -33,12 +34,15 @@ import Item from './component/Item'
 export default {
 data() {
     return {
+        currentPage:0,//当前页
 
     }
 },
 //方法集合
 methods: {
-
+    handleCurrentChange(e){
+        this.currentPage = e
+    }
 },
 //接收props传值
 props: [],
@@ -58,7 +62,7 @@ mounted() {
 },
 }
 </script>
-<style lang='scss' scoped>
+<style lang='scss'>
     .other{
         padding: 0 4.11rem;
         background: rgb(242,245,249);
@@ -67,13 +71,33 @@ mounted() {
             justify-content: space-between;
             flex-wrap: wrap;
             div{
-                margin-bottom: 0.3rem;
+                // margin-bottom: 0.3rem;
             }
         }
-        .page{
-            color: red !important;
-            display: flex;
-            justify-content: center;
+        .el-pager li{
+            background: white !important;
+            border: 0.01rem solid rgb(221,222,224) !important;
+            font-size: 0.17rem !important;
+            margin: 0 0.03rem !important;
+            border-radius: 0.04rem !important;
+        }
+        .el-pager .active{
+            color: rgb(250,115,75) !important;
+            border: 0rem solid red !important;
+            background: rgb(242,245,249) !important;
+        }
+        .btn-prev span,.btn-next span{
+            border: 0.01rem solid rgb(221,222,224) !important;
+            background: white !important;
+            padding: 0 0.2rem;
+        }
+        .el-pagination .btn-prev , .btn-next{
+            margin: 0 !important;
+            background: none !important;
+            border-radius: 0.04rem !important;
+        }
+        .el-pagination button:disabled{
+            background: none;
         }
     }
 </style>

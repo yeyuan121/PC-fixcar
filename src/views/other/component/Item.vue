@@ -55,6 +55,7 @@ mounted() {
         box-sizing: border-box;
         font-size: 0.14rem;
         border-radius: 0.02rem;
+        margin-bottom: 0.3rem;
         .div1{
             height: 2.5rem;
             width: 2.8rem;

@@ -86,6 +86,7 @@ mounted() {
             display: flex;
             align-items: center;
             input{
+                outline: none;
                 height: 0.45rem;
                 border-radius: 0.03rem;
                 margin-right: 0.03rem;

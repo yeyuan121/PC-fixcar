@@ -1,22 +1,21 @@
 <template>
 <div class='container'>
-    <div style="height:0.5rem;display:flex;align-items:center;width:0.85rem;"><img src="@/assets/img/logo.png" alt=""></div>
+    <div class="div1">
+        <img src="@/assets/img/logo.png" alt="">
+    </div>
     <div @click="handleClick(1)" :class="{add:current == 1}">首页</div>
     <div @click="handleClick(2)" :class="{add:current == 2}">电脑维修</div>
     <div @click="handleClick(3)" :class="{add:current == 3}">网络维修</div>
     <div @click="handleClick(4)" :class="{add:current == 4}">办公设备</div>
     <div @click="handleClick(5)" :class="{add:current == 5}">监控设备</div>
     <div @click="handleClick(6)" :class="{add:current == 6}">其他产品</div>
-    <div @click="handleClick(7)" :class="{add:current == 7}">服务^</div>
+    <div @click="handleClick(7)" :class="{add:current == 7}">服务</div>
     <div @click="handleClick(8)" :class="{add:current == 8}">案例资讯</div>
-    <div @click="handleClick(9)" :class="{add:current == 9}">关于我们^</div>
-    <div @click="handleClick(19)" :class="{add:current == 19}" style="width:0.8rem;">
+    <div @click="handleClick(9)" :class="{add:current == 9}">关于我们</div>
+    <div @click="handleClick(19)" :class="{add:current == 19}" class="div2">
         <img src="@/assets/img/1.png" alt="">
         登录/注册
     </div>
-
-    <div></div>
-    <div></div>
 </div>
 </template>
 
@@ -49,6 +48,8 @@ methods: {
             this.$router.push('/')
         }else if(i == 7){
             this.$router.push('/serve')
+        }else if(i == 8){
+            this.$router.push('/case')
         }
     }
 },
@@ -81,12 +82,34 @@ mounted() {
     left: 0;
     z-index: 999;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
+    text-align: center;
+    .div1{
+        height: 100%;
+        width: 1.5rem;
+        display: flex;
+        align-items: center;
+        img{
+            height: 0.5rem;
+            width: 100%;
+        }
+    }
+    .div2{
+        height: 100%;
+        width: 0.9rem;
+        display: flex;
+        align-items: center;
+        // justify-content: center;
+        img{
+            height: 0.18rem;
+            width: 0.15rem;
+        }
+    }
     div{
         height: 0.21rem;
         width: 0.65rem;
-        font-size: 0.12rem;
+        font-size: 0.16rem;
         color: white;
         text-align: center;
         cursor: pointer;

@@ -9,6 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 
 import './common/rem'
+import './common/request'
 import 'normalize.css' 
 
 //引入api文件

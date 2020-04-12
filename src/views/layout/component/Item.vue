@@ -4,7 +4,13 @@
             <img src="" alt="">
         </div>
         <div class="div2">
-            <div class="div11"><span>HOT</span>{{title}}</div>
+            <div class="div11">
+                <span>{{mark}}</span>
+                {{title}}
+                <div class="slot_container">
+                    <slot name="date" />
+                </div>
+            </div>
             <div class="div21">{{text}}</div>
         </div>
     </div>
@@ -22,7 +28,7 @@ methods: {
 
 },
 //接收props传值
-props: ['title','text'],
+props: ['title','text','mark'],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化
@@ -60,13 +66,21 @@ mounted() {
             span{
                 display: inline-block;
                 height: 0.2rem;
-                width: 0.4rem;
+                min-width: 0.4rem;
+                padding: 0 0.05rem;
                 background: rgb(252, 72, 17);
                 line-height: 0.2rem;
                 color: white;
                 text-align: center;
                 border-radius: 0.03rem;
                 margin-right: 0.05rem;
+            }
+            .div11{
+                display: flex;
+                .slot_container{
+                    flex: 1;
+                    text-align: end;
+                }
             }
         }
     }
