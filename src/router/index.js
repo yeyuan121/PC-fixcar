@@ -51,7 +51,21 @@ Vue.use(VueRouter)
   },
   {
     path:'/profile',
-    component:() => import('../views/profile/Profile.vue')
+    component:() => import('../views/profile/Profile.vue'),
+    children:[
+      {
+        path:'detail',
+        component:() => import('../views/profile/component/Detail.vue')
+      },
+      {
+        path:'changepwd',
+        component:() => import('../views/profile/component/ChangePassword.vue')
+      },
+      {
+        path:'order',
+        component:() => import('../views/profile/component/OrderList.vue')
+      }
+    ]
   }
 ]
 

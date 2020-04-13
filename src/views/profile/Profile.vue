@@ -7,15 +7,21 @@
         </div>
         <div class="flex-container">
             <div class="left">
-                <div class="left1">账户首页</div>
+                <div class="left1"><div></div>账户首页</div>
                 <div class="left2">
                     <div class="left2child1">订单信息</div>
-                    <div class="left2child2">我的订单</div>
+                    <div class="left2child2">
+                        <router-link to="/profile/order">我的订单</router-link>
+                    </div>
                 </div>
                 <div class="left3">
                     <div class="left3child1">基本信息</div>
-                    <div class="left3child2">个人资料</div>
-                    <div class="left3child2">修改密码</div>
+                    <div class="left3child2">
+                        <router-link to="/profile/detail">个人资料</router-link>
+                    </div>
+                    <div class="left3child2">
+                        <router-link to="/profile/changepwd">修改密码</router-link>
+                    </div>
                 </div>
             </div>
             <div class="right">
@@ -79,7 +85,7 @@ mounted() {
             padding-bottom: 0.6rem;
             display: flex;
             background: rgb(242,245,249);
-            font-size: 0.14rem;
+            font-size: 0.16em;
             .left{
                 width: 1.47rem;
                 height: 3.55rem;
@@ -91,10 +97,22 @@ mounted() {
                 div{
                     background: white;
                 }
+                .router-link-active{
+                    color: rgb(252,72,17) !important;
+                }
+                a{
+                    text-decoration: none;
+                    color: rgb(145,152,161);
+                }
                 .left1{
                     height: 0.6rem;
                     line-height: 0.6rem;
                     margin-bottom: 0.03rem;
+                    color: rgb(252,72,17);
+                    div{
+                        height: 0.04rem;
+                        background: rgb(252,72,17);
+                    }
                 }
                 .left2{
                     .left2child1{
