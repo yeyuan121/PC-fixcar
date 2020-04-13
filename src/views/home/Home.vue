@@ -28,22 +28,22 @@ data() {
     return {
         itemArr:[
             {
-                path:'../../assets/img/7.png',
+                path:require('../../assets/img/7.png'),
                 title:'电脑维修',
                 text:'系统安装、开机无反应、黑屏、电脑中毒、电脑死机、蓝屏、电脑进水、清灰、无法上网、……',
             },
             {
-                path:'@/assets/img/7.png',
+                path:require('../../assets/img/8.png'),
                 title:'网络维修',
                 text:'网络突然中断、网卡误操作被禁用、交换机停止工作、网络正常，邮件收发有问题 ……',
             },
             {
-                path:'@/assets/img/7.png',
+                path:require('../../assets/img/9.png'),
                 title:'办公设备',
                 text:'喷墨打印机，激光打印机，扫描仪，投影仪，办公耗材  ……',
             },
             {
-                path:'@/assets/img/7.png',
+                path:require('../../assets/img/10.png'),
                 title:'监控设备',
                 text:'同轴监控，数字监控，人脸识别监控，家用无线监控，停车道闸系统，门禁考勤系统 …',
             }

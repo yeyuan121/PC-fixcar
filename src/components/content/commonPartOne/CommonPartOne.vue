@@ -11,7 +11,8 @@
             <Item 
             v-for="(v,k,index) in itemArr"
             :key="index"
-            :item-name='v'
+            :item-name='v.name'
+            :item-img="v.img"
             />
             <div class="slots">
                 <slot name="slotbottom" />
@@ -73,7 +74,15 @@ mounted() {
             }
             .slots{
                 width: 100%;
-                font-size: 0.13rem;
+                font-size: 0.17rem;
+                text-align: center;
+                margin-top: 0.6rem;
+                margin-bottom: 0.9rem;
+                color: rgb(145,152,161);
+                span{
+                    color: rgb(252,72,17);
+                    font-weight: bold;
+                }
                 div{
                     padding: 0.1rem 1rem;
                     text-align: center;

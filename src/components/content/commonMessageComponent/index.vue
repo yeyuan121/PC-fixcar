@@ -5,10 +5,10 @@
             title-name='不花钱自己动动小手可以维修哪些?'
             />
             <Item
-            message-component-text='电脑黑屏：开机显示器无画面或提示无信号，一般内存条问题，检查键盘灯是否亮起如不亮
-拔插内存条即可；如键盘灯正常亮起，随之检查显示器或者显卡'
-            v-for="(v,k,index) in 4"
+            :message-component-text='v.content'
+            v-for="(v,k,index) in fixArr"
             :key="index"
+            :message-header='v.header'
             />
             <div class="contain">
                 <Title 
@@ -91,7 +91,7 @@ methods: {
 
 },
 //接收props传值
-props: [],
+props: ['fixArr',],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化

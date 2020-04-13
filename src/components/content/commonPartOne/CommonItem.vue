@@ -2,7 +2,7 @@
     <div class='common-item'>
         <div class="commonitem1"></div>
         <div class="commonitem2">
-            <img src="@/assets/img/7.png" alt="">
+            <img :src="itemImg" alt="">
         </div>
         <div class="commonitem3">{{itemName}}</div>
         <div class="commonitem1 add"></div>
@@ -21,7 +21,7 @@ methods: {
 
 },
 //接收props传值
-props: ['itemName'],
+props: ['itemName','itemImg'],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化
@@ -64,9 +64,10 @@ mounted() {
             padding: 0.2rem;
             box-sizing: border-box;
             margin: 0 auto;
+            justify-content: center;
             img{
-                width: 0.6rem;
-                height: 0.5rem;
+                width: 90%;
+                height: 85%;
             }
         }
         .commonitem3{

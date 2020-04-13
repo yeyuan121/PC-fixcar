@@ -22,9 +22,9 @@
 <script>
 export default {
 data() {
-return {
-    current:0,
-}
+    return {
+        current:0,
+    }
 },
 //方法集合
 methods: {
@@ -61,7 +61,7 @@ watch: {},
 components: {},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
-
+    
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {

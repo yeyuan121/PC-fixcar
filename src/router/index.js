@@ -48,6 +48,10 @@ Vue.use(VueRouter)
   {
     path:'/case',
     component:() => import('../views/case/Case.vue')
+  },
+  {
+    path:'/profile',
+    component:() => import('../views/profile/Profile.vue')
   }
 ]
 

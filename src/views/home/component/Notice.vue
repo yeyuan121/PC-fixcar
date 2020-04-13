@@ -11,7 +11,9 @@
                 <div class="div3child3"><img src='@/assets/img/right.png'></img>有更换配件的找技术员索要保修凭证 ;</div>
             </div>
         </div>
-        <div class="right"></div>
+        <div class="right">
+            <img src="@/assets/img/sobig.png" alt="">
+        </div>
     </div>
 </template>
 
@@ -77,6 +79,12 @@ mounted() {
         }
         .right{
             width: 5rem;
+            padding: 0.3rem 0;
+            box-sizing: border-box;
+            img{
+                height: 100%;
+                width: 100%;
+            }
         }
     }
 </style>

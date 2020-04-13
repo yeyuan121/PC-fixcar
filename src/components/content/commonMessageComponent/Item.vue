@@ -1,7 +1,10 @@
 <template>
     <div class='messageitem'>
-        <img src="@/assets/img/7.png" alt="">
-        <div>{{messageComponentText}}</div>
+        <!-- <img src="@/assets/img/7.png" alt=""> -->
+        <div>
+            <span>{{messageHeader}}</span>
+            {{messageComponentText}}
+        </div>
     </div>
 </template>
 
@@ -17,7 +20,7 @@ methods: {
 
 },
 //接收props传值
-props: ['messageComponentText'],
+props: ['messageComponentText','messageHeader'],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化
@@ -47,10 +50,19 @@ mounted() {
             margin-right: 0.1rem;
         }
         div{
+            cursor: pointer;
+            height: 0.68rem;
             flex: 1;
             font-size: 0.13rem;
             line-height: 0.24rem;
             color: rgb(145,152,161);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            span{
+                font-weight: bold;
+                color: rgb(35,55,84);
+                margin-right: 0.07rem;
+            }
         }
     }
 </style>

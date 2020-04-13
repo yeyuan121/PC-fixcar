@@ -80,6 +80,9 @@ mounted() {
             font-size: 0.17rem !important;
             margin: 0 0.03rem !important;
             border-radius: 0.04rem !important;
+            width: 0.5rem !important;
+            height: 0.5rem !important;
+            line-height: 0.5rem !important;
         }
         .el-pager .active{
             color: rgb(250,115,75) !important;
@@ -90,6 +93,23 @@ mounted() {
             border: 0.01rem solid rgb(221,222,224) !important;
             background: white !important;
             padding: 0 0.2rem;
+            width: 1.2rem !important;
+            height: 0.5rem !important;
+            line-height: 0.5rem !important;
+            font-size: 0.16rem !important;
+        }
+        .el-pagination__editor{
+            height: 0.5rem !important;
+            line-height: 0.5rem !important;
+            font-size: 0.16rem !important;           
+        }
+        .el-pagination__jump{
+            font-size: 0.16rem !important;
+        }
+        .el-pagination__jump input{
+            height: 0.5rem !important;
+            line-height: 0.5rem !important;
+            font-size: 0.16rem !important;
         }
         .el-pagination .btn-prev , .btn-next{
             margin: 0 !important;

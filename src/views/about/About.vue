@@ -37,25 +37,25 @@
             <div class="div2child1">您可以多种方式联系我们哦</div>
             <div class="div2child2">
                 <div class="div2child2div1">
-                    <img src="@/assets/img/14844.png" alt="">
+                    <img src="@/assets/img/about1.png" alt="">
                     <div class="icondesc">
                         固话 | 0592-6666915
                     </div>
                 </div>
                 <div class="div2child2div2">
-                    <img src="@/assets/img/14844.png" alt="">
+                    <img src="@/assets/img/about2.png" alt="">
                     <div class="icondesc">
                         手机 | 18030244550
                     </div>
                 </div>
                 <div class="div2child2div3">
-                    <img src="@/assets/img/14844.png" alt="">
+                    <img src="@/assets/img/about3.png" alt="">
                     <div class="icondesc">
                         微信 | 18030244550
                     </div>
                 </div>
                 <div class="div2child2div4">
-                    <img src="@/assets/img/14844.png" alt="">
+                    <img src="@/assets/img/about4.png" alt="">
                     <div class="icondesc">
                         QQ | 635409869
                     </div>
@@ -187,7 +187,7 @@ mounted() {}
                     color: rgb(252,72,17);
                     text-align: center;
                     img{
-                        height: 1.08rem;
+                        height: 1.03rem;
                         width: 1.08rem;
                         margin-bottom: 0.3rem;
                     }

@@ -6,7 +6,7 @@
         </div>
         <div class="div3">{{title}}</div>
         <div class="div4">{{text}}</div>
-        <div class="div5">查看更多</div>
+        <div class="div5" @click="handleClick">查看更多</div>
         <div class="div1 add"></div>
     </div>
 </template>
@@ -14,13 +14,23 @@
 <script>
 export default {
 data() {
-return {
+    return {
 
-}
+    }
 },
 //方法集合
 methods: {
-
+    handleClick(){
+        if(this.title == '电脑维修'){
+            this.$router.push('/computer')
+        }else if(this.title == '网络维修'){
+            this.$router.push('/network')
+        }else if(this.title == '办公设备'){
+            this.$router.push('/work')
+        }else{
+            this.$router.push('/monitor')
+        }
+    }
 },
 //接收props传值
 props: ['title','text','path'],
