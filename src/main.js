@@ -23,7 +23,7 @@ import Profile from './views/profile/Profile.vue'
 import Order from './views/profile/component/OrderList.vue'
 import Detail from './views/profile/component/Detail.vue'
 import Changepwd from './views/profile/component/ChangePassword'
-
+import Article from './views/article/Article.vue'
 
 
 Vue.use(VueRouter)
@@ -83,6 +83,12 @@ axios.post('http://api.ddctou.net/api/Routing/getRouting')
     // name:'登录',
     // meta:99,
     component: Register
+  })
+  routes.push({
+    path:'/article/:id',
+    // name:'登录',
+    // meta:99,
+    component: Article
   })
   routes.push({
     path:'/profile',

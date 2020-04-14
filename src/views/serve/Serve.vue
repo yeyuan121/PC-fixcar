@@ -2,6 +2,7 @@
     <div class='container'>
         <CommonTitleComponent
         item-title='维修视频教程'
+        :history-recode-string='historyArr'
         />
         <div class="flex_container">
             <Item 
@@ -42,9 +43,19 @@ import Item from './component/Item'
 
 export default {
 data() {
-return {
-
-}
+    return {
+        historyArr:
+        [
+            {
+                name:'首页 >',
+                url:'/'
+            },
+            {
+                name:'服务',
+                url:'/fw'
+            }
+        ]
+    }
 },
 //方法集合
 methods: {

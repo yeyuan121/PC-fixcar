@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="child5"></div>
-            <div class="child6">登陆</div>
+            <div class="child6" @click="toLogin">登陆</div>
             <div class="child7">
                 <div class="child7child1">其他账号登陆<img src="@/assets/img/qq.png" alt=""></div>            
                 <div class="child7child2" @click="toRegister">立即注册</div>
@@ -52,6 +52,8 @@
 <script>
 import { slider, slideritem } from 'vue-concise-slider'
 import FormBottom from './FormBottom'
+
+import {loginFunc,} from '@/api/login'
 
 export default {
    data () {
@@ -120,7 +122,28 @@ export default {
       },
       toRegister(){
           this.$router.push('/register')
+      },
+      toLogin(){//登陆操作
+          let username = this.phone
+          let password = this.password
+          loginFunc({username,password,}).then(res=>{
+              if(res.data.code == 1){
+                let data = JSON.stringify(res.data.data)
+                this.saveUserMessage(data)
+                this.$alert('登陆成功','提示')
+              }else{
+                this.$alert(`${res.data.msg}`, '登陆失败', {
+                    confirmButtonText: '确定'
+                })               
+              }
+          })
+      },
+      saveUserMessage(data){//保存用户信息
+        localStorage.setItem('nc_user',data)
       }
+    },
+    created(){
+        
     }
 }
 </script>

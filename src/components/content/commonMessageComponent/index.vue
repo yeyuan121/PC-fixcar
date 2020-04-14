@@ -15,13 +15,12 @@
                 title-name='维修案例'
                 />
             </div>
+            <!--存放维修案例数组前2个数据对象的容器-->
             <div class="imgcontainer">
-                <img 
-                :src="v.thumb" 
-                :alt="v.title"
-                v-for="(v,k,index) in wxalArray"
-                :key='index'
-                >
+                <div class="first1">
+                    <div class="desc">111111111111111</div>
+                </div>
+                <div class="first2"></div>
             </div>
             <NewsItem 
             v-for="(v,k,index) in wxalArray"
@@ -97,7 +96,7 @@ methods: {
 
 },
 //接收props传值
-props: ['fixArr','wxalArray',],
+props: ['fixArr','wxalArray','wxalArrayTop2',],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化
@@ -146,8 +145,9 @@ mounted() {
         .left{
             flex: 1;
             width:7.74rem;
-            padding:0 0.68rem;
+            padding:0 0.6rem;
             box-sizing:border-box;
+            word-break: break-all;
             .contain{
                 margin-top: 0.3rem;
                 margin-bottom: 0.3rem
@@ -157,9 +157,22 @@ mounted() {
                 justify-content: space-between;
                 height: 2.08rem;
                 width:100%;
-                img{
-                    border-radius:0.03rem;
-                    flex: 1;
+                div{
+                    position: relative;
+                    flex: 0.49;
+                    border-radius: 0.09rem;
+                    .desc{
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 0.6rem;
+                        font-size: 0.15rem;
+                        color: white;
+                        padding: 0 0.22rem;
+                        box-sizing: border-box;
+                        line-height: 0.6rem;
+                    }
                 }
             }
         }

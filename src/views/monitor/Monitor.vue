@@ -3,6 +3,7 @@
         <CommonComponent
         item-title='监控设备维修具体有哪些项目?'
         :item-arr='arr'
+        :history-recode-string='historyArr'
         >
             <template v-slot:slotbottom>
                 更多的故障问题您可以直接联系我们！<span> 0592-6666915</span>
@@ -49,6 +50,17 @@ data() {
                 },
             ],
         articleArray:[],//维修案例数据数组
+        historyArr:
+            [
+                {
+                    name:'首页 >',
+                    url:'/'
+                },
+                {
+                    name:'监控设备',
+                    url:'jksb'
+                }
+            ]
     }
 },
 //方法集合

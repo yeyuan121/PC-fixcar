@@ -16,21 +16,21 @@
             <div class="child11 addmargin">
                 <div class="child11child1">手机/邮箱</div>
                 <div class="child11child2">
-                    <input type="text" name="" id="" placeholder="请输入邮箱或中国大陆手机号">
+                    <input type="text" name="" id="" placeholder="请输入邮箱或中国大陆手机号" v-model="phone">
                 </div>
             </div>
             <div class="child11 addmargin">
                 <div class="child11child1">密码</div>
                 <div class="child11child2">
-                    <input type="text" name="" id="" placeholder="4-20个字符,区分大小写">
+                    <input type="text" name="" id="" placeholder="4-20个字符,区分大小写" v-model="password">
                 </div>
             </div>
             <div class="child11">
                 <div class="child11child1">验证码</div>
                 <div class="child11child2">
-                    <input type="text" name="" id="" placeholder="请输入验证码">
+                    <input type="text" name="" id="" placeholder="请输入验证码" v-model="code">
                 </div>
-                <div class="child11child3">
+                <div class="child11child3" @click="toGetCode()">
                     获取验证码
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 <span class="spanclass1">我同意</span>
                 <span class="spanclass2">《耐诚智能科技平台注册协议》</span>
             </div>
-            <div class="child14">免费注册</div>
+            <div class="child14" @click="toFreeRegister">免费注册</div>
             <div class="child15">
                 <span class="span1">已有账号?</span><span class="span2" @click="toLogin">直接登陆</span>
             </div>
@@ -50,6 +50,8 @@
 
 <script>
 import { slider, slideritem } from 'vue-concise-slider'
+
+import {getCode,registerFunc} from '@/api/register'
 
 export default {
    data () {
@@ -119,7 +121,32 @@ export default {
           this.$router.push('/register')
       },
       toLogin(){
-          this.$router.push('/login')
+          this.$router.push('/dl')
+      },
+      toGetCode(){//获取验证码
+        let phone = this.phone
+        let event = 'register'
+        getCode({phone,event}).then(res=>{
+            if(res.data.code == 1){
+                this.$alert('发送验证码成功','提示')
+            }else{
+                this.$alert('发送验证码失败','提示')
+            }
+        })
+      },
+      toFreeRegister(){
+          let username = this.phone
+          let password = this.password
+          let nickname = this.nickname ? this.nickname : ''
+          let code = this.code
+          registerFunc({username,password,nickname,code,}).then(res=>{
+              console.log(res,114)
+              if(res.data.code == 1){
+                  this.$alert('注册成功','提示')
+              }else{
+                  this.$alert(`${res.data.msg}`,'提示')
+              }
+          })
       }
     }
 }

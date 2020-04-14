@@ -77,6 +77,14 @@ methods: {
     //点击tab栏回调函数
     changeTab(i){
         this.current = i
+        // this.historyArr.push({name:' >叶远 >',url:'/'})
+        if(i == 1){
+            this.historyArr.splice(1,1,{name:'案例咨询',url:''}) 
+        }else if(i == 2){
+            this.historyArr.splice(1,1,{name:'维修案例',url:''})
+        }else{
+            this.historyArr.splice(1,1,{name:'行业资讯',url:''}) 
+        }
     },
     //处理初始化数据
     dealInitData(arr){
@@ -89,6 +97,12 @@ methods: {
     },
     childTabClick(i){
         this.current2 = i
+        let name = '  > ' + this.$router.options.routes.find(item => item.meta == i).name
+        if(this.historyArr.length < 3){
+            this.historyArr.push({name,url:''})
+        }else{
+            this.historyArr.splice(2,1,{name,url:'',})
+        }
     }
 },
 //组件注册

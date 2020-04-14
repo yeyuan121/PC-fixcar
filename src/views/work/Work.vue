@@ -3,6 +3,7 @@
         <CommonComponent 
         item-title='办公设备维修具体有哪些项目?'
         :item-arr='arr'
+        :history-recode-string='historyArr'
         >
             <template v-slot:slottop>
                 喷墨打印机，激光打印机，扫描仪，投影仪，办公耗材等
@@ -60,6 +61,17 @@ data() {
                 },
             ],
         articleArr:[],
+        historyArr:
+            [
+                {
+                    name:'首页 >',
+                    url:'/'
+                },
+                {
+                    name:'办公设备',
+                    url:'/bgsb'
+                }
+            ]
     }
 },
 //方法集合

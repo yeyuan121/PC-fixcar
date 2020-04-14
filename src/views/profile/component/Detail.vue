@@ -2,11 +2,11 @@
     <div class='conatainer'>
         <div class="div1">
             <div class="span2"><span>*</span>真实姓名</div>
-            <input type="text" name="" id="">
+            <input type="text" name="" id="" v-model="userObject.nickname">
         </div>
         <div class="div1">
             <div class="span2"><span>*</span>联系方式</div>
-            <input type="text" name="" id="">            
+            <input type="text" name="" id="" v-model="userObject.mobile">            
         </div>
         <div class="div1">
             <div>邮箱</div><input type="text" name="" id="">
@@ -29,7 +29,7 @@ export default {
 //组件状态
 data() {
     return {
-
+        userObject:null,//用户信息对象
     }
 },
 //方法集合
@@ -41,7 +41,9 @@ props:[],
 //计算属性
 computed: {},
 //钩子函数
-created() {},
+created() {
+    this.userObject = JSON.parse(localStorage.getItem('nc_user'))
+},
 mounted() {}
 }
 </script>
@@ -57,6 +59,8 @@ mounted() {}
             outline: none;
             border: 0.01rem solid rgb(223,224,227);
             border-radius: 0.04rem;
+            box-sizing: border-box;
+            padding: 0 0.15rem;
         }
         .div1{
             display: flex;

@@ -50,6 +50,8 @@ mounted() {
             margin-right: 0.1rem;
         }
         div{
+            padding-right: 0.6rem;
+            box-sizing: border-box;
             cursor: pointer;
             height: 0.68rem;
             flex: 1;

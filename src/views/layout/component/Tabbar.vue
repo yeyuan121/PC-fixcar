@@ -10,9 +10,13 @@
     >
         <router-link :to="v.path" v-if="v.name != '登录'">{{v.name}}</router-link>
     </div>
-    <div class="div2">
+    <div class="div2" v-if="!isLogin">
         <img src="@/assets/img/1.png" alt="">
         <router-link to="/dl">登录/注册</router-link>
+    </div>
+    <div class="div2" v-else>
+        <img src="@/assets/img/1.png" alt="">
+        <router-link to="/profile">{{userObject.mobile}}</router-link>
     </div>
 </div>
 </template>
@@ -23,6 +27,8 @@ data() {
     return {
         current:0,
         routesArray:[],
+        isLogin:false,//是否登陆
+        userObject:null,//用户信息对象
     }
 },
 //方法集合
@@ -41,7 +47,13 @@ created() {
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {
-
+    if(localStorage.getItem('nc_user')){
+        this.isLogin = true
+        this.userObject = JSON.parse(localStorage.getItem('nc_user'))
+    }else{
+        this.isLogin = false
+        this.userObject = null
+    }
 },
 }
 </script>
