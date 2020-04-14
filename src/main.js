@@ -8,6 +8,24 @@ import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import VueRouter from 'vue-router'
 
+import Home from '@/views/home/Home.vue'
+import Computer from './views/computer/Computer.vue'
+import Work from './views/work/Work.vue'
+import Monitor from './views/monitor/Monitor.vue'
+import Other from './views/other/Other.vue'
+import Serve from './views/serve/Serve.vue'
+import Case from './views/case/Case.vue'
+import About from './views/about/About.vue'
+import Network from './views/network/Network.vue'
+import Login from './views/login/Login.vue'
+import Register from './views/register/Register.vue'
+import Profile from './views/profile/Profile.vue'
+import Order from './views/profile/component/OrderList.vue'
+import Detail from './views/profile/component/Detail.vue'
+import Changepwd from './views/profile/component/ChangePassword'
+
+
+
 Vue.use(VueRouter)
 Vue.use(ElementUI)
 
@@ -20,31 +38,30 @@ import './api/index'
 
 Vue.config.productionTip = false
 
-axios.post('http://api.luodiqian.com/api/Routing/getRouting')
+axios.post('http://api.ddctou.net/api/Routing/getRouting')
 .then(response => {
-  console.log(response.data.data,333)
   const routeArray = response.data.data
   const routes = []
   for(const item of routeArray){
-    let path = ''
+    let path = null
     if(item.name == '首页'){
-      path = '../views/home/Home.vue'
+      path = Home
     }else if(item.name == '电脑维修'){
-      path = '../views/computer/Computer.vue'
+      path = Computer
     }else if(item.name == '网络维修'){
-      path = '../views/network/Network.vue'
+      path = Network
     }else if(item.name == '办公设备'){
-      path = '../views/work/Work.vue'
+      path = Work
     }else if(item.name == '监控设备'){
-      path = '../views/monitor/Monitor.vue'
+      path = Monitor
     }else if(item.name == '其他产品'){
-      path = '../views/other/Other.vue'
+      path = Other
     }else if(item.name == '服务'){
-      path = '../views/serve/Serve.vue'
+      path = Serve
     }else if(item.name == '案例资讯'){
-      path = '../views/case/Case.vue'
+      path = Case
     }else if(item.name == '关于我们'){
-      path = '../views/about/About.vue'
+      path = About
     }else{
       return
     }
@@ -52,15 +69,46 @@ axios.post('http://api.luodiqian.com/api/Routing/getRouting')
       path:item.alias,
       name:item.name,
       meta:item.id,
-      component:() => import(path)
+      component: path
     })
   }
-  console.log(routes,444)
+  routes.push({
+    path:'/dl',
+    // name:'登录',
+    // meta:99,
+    component: Login
+  })
+  routes.push({
+    path:'/register',
+    // name:'登录',
+    // meta:99,
+    component: Register
+  })
+  routes.push({
+    path:'/profile',
+    component: Profile,
+    children:
+    [
+      {
+        path:'detail',
+        component:Detail
+      },
+      {
+        path:'order',
+        component:Order
+      },
+      {
+        path:'changepwd',
+        component:Changepwd
+      }
+    ]
+  })
   const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
     routes
   })
+  // console.log(router)
   new Vue({
     router,
     store,
@@ -71,8 +119,3 @@ axios.post('http://api.luodiqian.com/api/Routing/getRouting')
   console.log(error)
 })
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')

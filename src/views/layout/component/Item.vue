@@ -1,7 +1,7 @@
 <template>
     <div class='containerss'>
         <div class="div1">
-            <img src="" alt="">
+            <img :src="leftImgPath" alt="">
         </div>
         <div class="div2">
             <div class="div11">
@@ -28,7 +28,7 @@ methods: {
 
 },
 //接收props传值
-props: ['title','text','mark'],
+props: ['title','text','mark','leftImgPath'],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化
@@ -58,6 +58,7 @@ mounted() {
             img{
                 height: 100%;
                 width: 100%;
+                border-radius: 0.03rem;
             }
         }
         .div2{
@@ -77,10 +78,17 @@ mounted() {
             }
             .div11{
                 display: flex;
+                align-items: center;
                 .slot_container{
                     flex: 1;
                     text-align: end;
                 }
+                margin-bottom: 0.05rem;
+                font-size: 0.13rem;
+            }
+            .div21{
+                color: rgb(145,152,161);
+                font-size: 0.11rem;
             }
         }
     }

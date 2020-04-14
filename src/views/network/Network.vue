@@ -11,6 +11,7 @@
         </CommonComponent>
         <CommonMessageComponent 
         :fix-arr='fixArr'
+        :wxal-array='articleArr'
         />
     </div>
 </template>
@@ -18,6 +19,8 @@
 <script>
 import CommonComponent from '../../components/content/commonPartOne/CommonPartOne'
 import CommonMessageComponent from '../../components/content/commonMessageComponent/index'
+
+import {getFixCase,} from '@/api/network.js'
 
 export default {
 data() {
@@ -56,7 +59,8 @@ data() {
                 header:'本地连接出现黄色叹号',
                 content:'1、打开电脑桌面，右键点击网上邻居属性；2、点击进入网上邻居界面，右键本地连接属性；3、 点击进入本地连接属性，双击Internet 协议（TCP/IP）；4、取消自动获度得IP地址选择选项，手动输入IP地址、子网掩码、默认网关和DNS服务器地问址；5、手动输入电脑的ip地址，子网掩码，DNS服务器地址，即可解除本地连接受限制；'
             }
-        ]
+        ],
+        articleArr:[],
     }
 },
 //方法集合
@@ -73,7 +77,14 @@ watch: {},
 components: {CommonComponent,CommonMessageComponent,},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
-
+    let cid = this.$route.meta
+    getFixCase({cid,type:2,}).then(res=>{
+        if(res.data.code == 1){
+            this.articleArr = res.data.data
+        }else{
+            alert('获取数据失败')
+        }
+    })
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {

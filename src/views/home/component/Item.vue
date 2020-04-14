@@ -22,13 +22,13 @@ data() {
 methods: {
     handleClick(){
         if(this.title == '电脑维修'){
-            this.$router.push('/computer')
+            this.$router.push('/dnwx')
         }else if(this.title == '网络维修'){
-            this.$router.push('/network')
+            this.$router.push('/wlwx')
         }else if(this.title == '办公设备'){
-            this.$router.push('/work')
+            this.$router.push('/bgsb')
         }else{
-            this.$router.push('/monitor')
+            this.$router.push('/jksb')
         }
     }
 },

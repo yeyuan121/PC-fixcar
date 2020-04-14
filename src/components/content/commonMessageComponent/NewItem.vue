@@ -1,13 +1,13 @@
 <template>
     <div class='containers'>
-        <img src="" alt="">
+        <img :src="newsImg" alt="">
         <div class="div1">
             <div class="div1child1">
                 <span class="div1span1">{{newsStyle}}</span>
                 <span class="div1span2">{{newsTitle}}</span>
             </div>
-            <div class="div1child2">
-                {{newsText}}
+            <div class="div1child2" v-html='newsText'>
+                <!-- {{newsText}} -->
             </div>
         </div>
     </div>
@@ -57,6 +57,7 @@ mounted() {
             height: 0.83rem;
             width: 1.13rem;
             margin-right: 0.1rem;
+            border-radius: 0.02rem;
         }
         .div1{
             flex: 1;

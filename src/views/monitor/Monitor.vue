@@ -10,6 +10,7 @@
         </CommonComponent>
         <CommonMessageComponent 
         :fix-arr='fixArray'
+        :wxal-array='articleArray'
         />
     </div>
 </template>
@@ -17,6 +18,8 @@
 <script>
 import CommonComponent from '../../components/content/commonPartOne/CommonPartOne'
 import CommonMessageComponent from '../../components/content/commonMessageComponent/index'
+
+import {getCase,} from '@/api/monitor'
 
 export default {
 data() {
@@ -44,7 +47,8 @@ data() {
                     header:'家用无线探头',
                     content:'无线探头基本上是通过连接家里的WIFI进行网络配对，通过手机远程来观看视频，如果手机看不到视频，提示设备不在线，一、检查无线探头是否通电，电源有没有接好 二、需要检查家里的路由器是否有通电 三、家里的网络是否正常上网 四、WIFI用户名或密码是否有更改过'
                 },
-            ]
+            ],
+        articleArray:[],//维修案例数据数组
     }
 },
 //方法集合
@@ -61,7 +65,15 @@ watch: {},
 components: {CommonComponent,CommonMessageComponent,},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
-
+    let cid = this.$route.meta
+    let type = 2
+    getCase({cid,type,}).then(res=>{
+        if(res.data.code == 1){
+            this.articleArray = res.data.data
+        }else{
+            alert('获取数据失败')
+        }
+    })
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {

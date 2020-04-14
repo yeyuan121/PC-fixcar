@@ -5,3 +5,13 @@ import {api} from '../common/request'
 export function getRouting(data){
     return req('post',api+'Routing/getRouting',data)
 }
+
+//文章获取
+export function getArticle(data){
+    return req('post',api+'/article/getArticleList',data)
+}
+
+//轮播图获取
+export function getCarousel(data){
+    return req('post',api+'/Carousel/getCarousel ',data)
+}

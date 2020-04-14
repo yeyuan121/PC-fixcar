@@ -14,4 +14,4 @@ export default function request(method,url,data = {}){
     }
 }
 
-export const api = 'http://api.luodiqian.com/api/'
+export const api = 'http://api.ddctou.net/api'

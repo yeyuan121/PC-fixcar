@@ -12,6 +12,7 @@
         </CommonPartComponent>
         <CommonMessageComponent
         :fix-arr='fixArray'
+        :wxal-array='articleObject[2]'
         />
     </div>
 </template>
@@ -19,6 +20,8 @@
 <script>
 import CommonPartComponent from '../../components/content/commonPartOne/CommonPartOne'
 import CommonMessageComponent from '../../components/content/commonMessageComponent/index'
+
+import {getArticleArr,} from '@/api/computer.js'
 
 export default {
 data() {
@@ -73,7 +76,12 @@ data() {
                         header:'电脑温度过高引起卡顿:',
                         content:'后台运行的程序过多，超出了CPU承受的范围。也有可能是电脑机箱散热不好所导致的可以利用一些清理软件将后台不必要的程序停止运行，和清理一下系统垃圾。关于机箱散热，我们可以对其做一些简单的维护，如清理一下机箱内部的灰尘，特别是CPU以及散热风扇上的灰尘。'
                     }
-                ]
+                ],
+            articleObject:{
+                1:[],//案例资讯
+                2:[],//维修案例
+                3:[],//行业资讯
+            }
     }
 },
 //方法集合
@@ -90,7 +98,25 @@ watch: {},
 components: {CommonPartComponent,CommonMessageComponent,},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
-
+    let cid = this.$route.meta
+    getArticleArr({cid}).then(res=>{
+        if(res.data.code == 1){
+            for(let item of res.data.data){
+                if(item.type == 1){
+                    this.articleObject[1].push(item)
+                }else if(item.type == 2){
+                    this.articleObject[2].push(item)
+                }else if(item.type == 3){
+                    this.articleObject[3].push(item)
+                }else{
+                    break
+                }
+            }
+            console.log(this.articleObject)
+        }else{
+            alert('获取文章失败')
+        }
+    })
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {

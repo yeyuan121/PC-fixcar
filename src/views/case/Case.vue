@@ -13,18 +13,26 @@
             </div>
             <div class="right">
                 <div class="right1">
-                    <div>电脑维修</div>
+                    <div
+                    v-for="(v,k,index) in allArticleArray[current]"
+                    :key='index'
+                    @click='childTabClick(k)'
+                    :class='{add2:k == current2}'
+                    >
+                    {{ $router.options.routes.find(item => item.meta == k).name }}
+                    </div>
                 </div>
                 <div class="right2">
                     <CommonItem
-                    mark='电脑维修'
-                    title="1111111111111111111111111"
-                    text='222222222222222222222222222222222222222222222'
-                    v-for="(v,k,index) in 6"
+                    :mark='v.name' 
+                    :title="v.title"
+                    :text='v.introduction'
+                    v-for="(v,k,index) in allArticleArray[current][current2]"
                     :key="index"
+                    :left-img-path='v.thumb'
                     >
                         <template v-slot:date>
-                            [2020-3-20]
+                            [{{v.create_time}}]
                         </template>
                     </CommonItem>
                 </div>
@@ -37,11 +45,14 @@
 import CommonTitle from '../../components/content/commonPartOne/CommonTitle'
 import CommonItem from '../../views/layout/component/Item'
 
+import {getAllArticleList,} from '@/api/case'
+
 export default {
 //组件状态
 data() {
     return {
         current:1,
+        current2:2,
         historyArr:
         [
             {
@@ -52,13 +63,32 @@ data() {
                 name:'案例咨询',
                 url:'/case'
             }
-        ]
+        ],
+        allArticleArray://所有的文章存放对象
+        {
+            1:{},//案例资讯
+            2:{},//维修案例
+            3:{},//行业资讯
+        },
     }
 },
 //方法集合
 methods: {
+    //点击tab栏回调函数
     changeTab(i){
         this.current = i
+    },
+    //处理初始化数据
+    dealInitData(arr){
+        for(const item of arr){
+            if(!Array.isArray(this.allArticleArray[item.type][item.cid])){//如果不是数组
+                this.allArticleArray[item.type][item.cid] = []
+            }
+            this.allArticleArray[item.type][item.cid].push(item)
+        }
+    },
+    childTabClick(i){
+        this.current2 = i
     }
 },
 //组件注册
@@ -68,7 +98,16 @@ props:[],
 //计算属性
 computed: {},
 //钩子函数
-created() {},
+created() {
+    getAllArticleList().then(res=>{
+        if(res.data.code == 1){
+            this.dealInitData(res.data.data)
+            console.log(this.allArticleArray,112,this.$router)
+        }else{
+            alert('获取数据失败')
+        }
+    })
+},
 mounted() {}
 }
 </script>
@@ -102,6 +141,7 @@ mounted() {}
                     display: flex;
                     height: 0.2rem;
                     margin-bottom: 0.15rem;
+                    cursor: pointer;
                     div{
                         width: 0.88rem;
                         height: 100%;
@@ -116,6 +156,9 @@ mounted() {}
         .add{
             background: rgb(252,83,31) !important;
             color: white !important;
+        }
+        .add2{
+            color: rgb(252,83,31) !important;
         }
     }
 </style>

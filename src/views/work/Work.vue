@@ -13,6 +13,7 @@
         </CommonComponent>
         <CommonMsgComponent 
         :fix-arr='fixArray'
+        :wxal-array='articleArr'
         />
     </div>
 </template>
@@ -20,6 +21,8 @@
 <script>
 import CommonComponent from '../../components/content/commonPartOne/CommonPartOne'
 import CommonMsgComponent from '../../components/content/commonMessageComponent/index'
+
+import {getCase,} from '@/api/work'
 
 export default {
 data() {
@@ -55,7 +58,8 @@ data() {
                     header:'投影仪',
                     content:'1.开机后几分钟就自动关机：这种情况下通常都是散热不了，打开机箱清理一下散热器或者换个散热器就可以解决了。2.投影出来很模糊：聚焦、电脑的分辨率过高、镜头是否干净都会导致这个问题，依次检测排查就可以解决了。'
                 },
-            ]
+            ],
+        articleArr:[],
     }
 },
 //方法集合
@@ -71,8 +75,16 @@ watch: {},
 //注册组件
 components: {CommonComponent,CommonMsgComponent,},
 //生命周期 - 创建完成（可以访问当前this实例）
-created() {
-
+created() { 
+    let cid = this.$route.meta
+    let type = 2
+    getCase({cid,type}).then(res=>{
+        if(res.data.code == 1){
+            this.articleArr = res.data.data
+        }else{
+            alert('请求失败')
+        }
+    })
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {

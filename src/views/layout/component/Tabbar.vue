@@ -3,18 +3,16 @@
     <div class="div1">
         <img src="@/assets/img/logo.png" alt="">
     </div>
-    <div @click="handleClick(1)" :class="{add:current == 1}">首页</div>
-    <div @click="handleClick(2)" :class="{add:current == 2}">电脑维修</div>
-    <div @click="handleClick(3)" :class="{add:current == 3}">网络维修</div>
-    <div @click="handleClick(4)" :class="{add:current == 4}">办公设备</div>
-    <div @click="handleClick(5)" :class="{add:current == 5}">监控设备</div>
-    <div @click="handleClick(6)" :class="{add:current == 6}">其他产品</div>
-    <div @click="handleClick(7)" :class="{add:current == 7}">服务</div>
-    <div @click="handleClick(8)" :class="{add:current == 8}">案例资讯</div>
-    <div @click="handleClick(9)" :class="{add:current == 9}">关于我们</div>
-    <div @click="handleClick(19)" :class="{add:current == 19}" class="div2">
+    <div
+    v-for="(v,k,index) in routesArray"
+    :key="index"
+    v-if='v.name'
+    >
+        <router-link :to="v.path" v-if="v.name != '登录'">{{v.name}}</router-link>
+    </div>
+    <div class="div2">
         <img src="@/assets/img/1.png" alt="">
-        登录/注册
+        <router-link to="/dl">登录/注册</router-link>
     </div>
 </div>
 </template>
@@ -24,34 +22,12 @@ export default {
 data() {
     return {
         current:0,
+        routesArray:[],
     }
 },
 //方法集合
 methods: {
-    handleClick(i){
-        this.current = i
-        if(i == 2){
-            this.$router.push('/computer')
-        }else if(i == 3){
-            this.$router.push('/network')
-        }else if(i == 4){
-            this.$router.push('./work')
-        }else if(i == 5){
-            this.$router.push('./monitor')
-        }else if(i == 6){
-            this.$router.push('/other')
-        }else if(i == 9){
-            this.$router.push('/about')
-        }else if(i == 19){
-            this.$router.push('/login')
-        }else if(i == 1){
-            this.$router.push('/')
-        }else if(i == 7){
-            this.$router.push('/serve')
-        }else if(i == 8){
-            this.$router.push('/case')
-        }
-    }
+    
 },
 //监听属性 类似于data概念
 computed: {},
@@ -61,7 +37,7 @@ watch: {},
 components: {},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
-    
+    this.routesArray = this.$router.options.routes
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {
@@ -85,6 +61,13 @@ mounted() {
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    .router-link-exact-active{
+        color: red !important;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
     .div1{
         height: 100%;
         width: 1.5rem;
