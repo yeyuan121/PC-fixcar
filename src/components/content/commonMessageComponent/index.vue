@@ -21,7 +21,7 @@
                 class="first1"
                 v-for="(v,k,index) in wxalArray.slice(0,2)"
                 :key="index"
-                @click="toArticlesDetail(v.id)"
+                @click="toArticlesDetail(v.alias,v.id)"
                 >
                     <img :src="v.thumb" alt="">
                     <div class="desc">{{v.title}}</div>
@@ -35,7 +35,7 @@
             :news-title='v.title'
             :news-text='v.introduction'
             :news-img='v.thumb'
-            @click.native="toArticlesDetail(v.id)"
+            @click.native="toArticlesDetail(v.alias,v.id)"
             />
         </div>
         <div class="right">
@@ -106,8 +106,8 @@ data() {
 //方法集合
 methods: {
     //点击维修案例div 跳转到文章详情页
-    toArticlesDetail(id){
-        this.$router.push(`/article/${id}`)
+    toArticlesDetail(alias,id){
+        this.$router.push(`${alias + '/' + id + '.html'}`)
     }
 },
 //接收props传值

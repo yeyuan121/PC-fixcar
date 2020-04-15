@@ -107,7 +107,7 @@ methods: {
     },
     //跳转去文章详情页
     goToDetail(alias,id){
-        this.$router.push(`${alias + '/' + id}`)
+        this.$router.push(`${alias + '/' + id + '.html'}`)
     }
 },
 //组件注册

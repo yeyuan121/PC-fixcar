@@ -26,6 +26,14 @@ import Changepwd from './views/profile/component/ChangePassword'
 import Article from './views/article/Article.vue'
 
 import vRegion from 'v-region'
+import VueAMap from 'vue-amap'
+Vue.use(VueAMap)
+VueAMap.initAMapApiLoader({
+  key: 'b7fb07787f78bc7da663a5d18f315c35',
+  plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
+  // 默认高德 sdk 版本为 1.4.4
+  v: '1.4.4'
+})
 Vue.use(vRegion)
 Vue.use(VueRouter)
 Vue.use(ElementUI)
@@ -50,11 +58,6 @@ axios.post('http://api.ddctou.net/api/Routing/getRouting')
       path = Home
     }else if(item.name == '电脑维修'){
       path = Computer
-      //注册电脑维修文章路由
-      routes.push({
-        path:item.alias + '/:id',
-        component: Article
-      })
     }else if(item.name == '网络维修'){
       path = Network
     }else if(item.name == '办公设备'){
@@ -77,6 +80,11 @@ axios.post('http://api.ddctou.net/api/Routing/getRouting')
       name:item.name,
       meta:item.id,
       component: path
+    })
+    //批量注册每个导航路由它对应的文章路由
+    routes.push({
+      path:item.alias + '/:id',
+      component: Article
     })
   }
   routes.push({

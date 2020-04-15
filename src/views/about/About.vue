@@ -63,7 +63,24 @@
             </div>
         </div>
         <div class="div3">
-            <img src="@/assets/img/map.jpg" alt="">
+            <!-- <img src="@/assets/img/map.jpg" alt=""> -->
+            <el-amap
+                vid="amapDemo3"  
+                :center="center"
+                :zoom="zoom"
+                mapStyle='normal'
+                class="amap-demo"
+            >
+                <el-amap-info-window 
+                :position="window.position"
+                :content="window.content"
+                >
+                    <!-- <div :style="slotStyle">
+                        <b>Hello {{ count }} times</b>
+                        <button @click="onClick">Add</button>
+                    </div> -->
+                </el-amap-info-window>
+            </el-amap>
         </div>
     </div>
 </template>
@@ -72,14 +89,32 @@
 export default {
 //组件状态
 data() {
-    return {
-        
-    }
+let self = this;
+        const center = [121.59996, 31.197646];
+
+        return {
+          zoom: 12,
+          center,
+        //   count: 0,
+        //   slotStyle: {
+        //     padding: '1px 1px',
+        //     background: 'rgba(70,92,110,0.3)',
+        //     color: '#333',
+        //     // border: '1px solid #aaa'
+        //   },
+          window: {
+            position: [121.59996, 31.197646],
+            content:'hello',
+          }
+        }
 },
 //方法集合
 methods: {
     toHome(){
         this.$router.push('/')
+    },
+    onClick(){
+
     }
 },
 //组件注册
@@ -197,6 +232,7 @@ mounted() {}
         .div3{
             height: 5.27rem;
             padding: 0 3.6rem;
+            padding-bottom: 1.2rem;
             img{
                 height: 100%;
                 width: 100%;
