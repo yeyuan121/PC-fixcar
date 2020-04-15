@@ -74,6 +74,7 @@ export default {
         currentTab:1,//登陆方式切换tab
         phone:'',
         password:'',
+        code:'',
       }
     },
     components: {

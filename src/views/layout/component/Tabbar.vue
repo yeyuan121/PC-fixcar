@@ -1,5 +1,5 @@
 <template>
-<div class='container'>
+<div class='container' :class="{addssss:$route.path.includes('profile')}">
     <div class="div1">
         <img src="@/assets/img/logo.png" alt="">
     </div>
@@ -11,11 +11,13 @@
         <router-link :to="v.path" v-if="v.name != '登录'">{{v.name}}</router-link>
     </div>
     <div class="div2" v-if="!isLogin">
-        <img src="@/assets/img/1.png" alt="">
+        <!-- <img src="@/assets/img/1.png" alt=""> -->
+        <i class="iconfont iconfont icon-weibiaoti4"></i>
         <router-link to="/dl">登录/注册</router-link>
     </div>
     <div class="div2" v-else>
-        <img src="@/assets/img/1.png" alt="">
+        <!-- <img src="@/assets/img/1.png" alt=""> -->
+        <i class="iconfont iconfont icon-weibiaoti4 changeblack"></i>
         <router-link to="/profile">{{userObject.mobile}}</router-link>
     </div>
 </div>
@@ -58,10 +60,26 @@ mounted() {
 }
 </script>
 <style lang='scss' scoped>
+    .icon-weibiaoti4{
+        // height: 0.23rem;
+        // width: 0.16rem;
+        margin-right: 0.05rem;
+    }
+    .addssss{
+        background: white !important;
+        color: black !important;
+        a{
+            color:black !important;
+        }
+        i{
+            color: black !important;
+        }
+    }
 .container{
+
     width: 100%;
     box-sizing: border-box;
-    height: 0.92rem;
+    height: 0.66rem;
     background: rgba(1,1,1,0);
     padding-left: 4.1rem;
     padding-right: 4rem;

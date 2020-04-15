@@ -128,6 +128,7 @@ export default {
           let password = this.password
           loginFunc({username,password,}).then(res=>{
               if(res.data.code == 1){
+                res.data.data['token'] = res.data.token
                 let data = JSON.stringify(res.data.data)
                 this.saveUserMessage(data)
                 this.$alert('登陆成功','提示')

@@ -2,32 +2,56 @@
     <div class='containers'>
         <div class="div1">
             <div>当前密码</div>
-            <input type="text" name="" id="" placeholder="请输入当前密码">
+            <input type="text" name="" id="" placeholder="请输入当前密码" v-model="p1">
         </div>
         <div class="div1">
             <div>新的密码</div>
-            <input type="text" name="" id="" placeholder="4-20个字符，区分大小写">
+            <input type="text" name="" id="" placeholder="4-20个字符，区分大小写" v-model="p2">
         </div>
         <div class="div1">
             <div>确认密码</div>
-            <input type="text" name="" id="">
+            <input type="text" name="" id="" v-model="p3">
         </div>
         <div class="div4">
-            <div>确认</div>
+            <div @click="confirms()">确认</div>
         </div>
     </div>
 </template>
 
 <script>
+import {modifyPassword,} from '@/api/profile.js'
+
 export default {
 //组件状态
 data() {
     return{
-
+        p1:'',
+        p2:'',
+        p3:'',
     }
 },
 //方法集合
-methods: {},
+methods: {
+    confirms(){
+        let token = JSON.parse(localStorage.getItem('nc_user')).token
+        let oldpw = this.p1
+        let newpw = this.p2
+        let newpw2 = this.p3
+        modifyPassword({
+            token,
+            oldpw,
+            newpw,
+            newpw2,
+        }).then(res=>{
+            console.log(res,115)
+            if(res.data.code == 1){
+                this.$alert(`${res.data.msg}`,'提示')
+            }else{
+                this.$alert(`${res.data.msg}`,'提示')
+            }
+        })
+    }
+},
 //组件注册
 components: {},
 //组件传值

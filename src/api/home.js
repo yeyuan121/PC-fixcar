@@ -13,5 +13,10 @@ export function getArticle(data){
 
 //轮播图获取
 export function getCarousel(data){
-    return req('post',api+'/Carousel/getCarousel ',data)
+    return req('post',api+'/Carousel/getCarousel',data)
+}
+
+//热门标签获取
+export function getTagesArr(data){
+    return req('post',api+'/hot_flag/getHotFlag',data)
 }

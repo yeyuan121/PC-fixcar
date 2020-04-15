@@ -47,15 +47,20 @@ mounted() {
 </script>
 <style lang='scss' scoped>
     .containerss{
+        cursor: pointer;
         height: 1rem;
         box-sizing: border-box;
         padding: 0.1rem 0;
         display: flex;
         .div1{
+            position: relative;
             height: 0.8rem;
             width: 1rem;
             margin-right: 0.1rem;
             img{
+                position: absolute;
+                top:0;
+                left:0;
                 height: 100%;
                 width: 100%;
                 border-radius: 0.03rem;
@@ -84,11 +89,15 @@ mounted() {
                     text-align: end;
                 }
                 margin-bottom: 0.05rem;
-                font-size: 0.13rem;
+                font-size: 0.12rem;
+                color: rgb(26,47,76);
+                font-weight: medium;
             }
             .div21{
                 color: rgb(145,152,161);
                 font-size: 0.11rem;
+                letter-spacing: 0.012rem;
+                line-height: 0.16rem;
             }
         }
     }

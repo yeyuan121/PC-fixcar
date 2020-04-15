@@ -17,24 +17,32 @@
             </div>
             <!--存放维修案例数组前2个数据对象的容器-->
             <div class="imgcontainer">
-                <div class="first1">
-                    <div class="desc">111111111111111</div>
+                <div 
+                class="first1"
+                v-for="(v,k,index) in wxalArray.slice(0,2)"
+                :key="index"
+                @click="toArticlesDetail(v.id)"
+                >
+                    <img :src="v.thumb" alt="">
+                    <div class="desc">{{v.title}}</div>
                 </div>
-                <div class="first2"></div>
+                <!-- <div class="first2"></div> -->
             </div>
             <NewsItem 
-            v-for="(v,k,index) in wxalArray"
+            v-for="(v,k,index) in wxalArray.slice(2)"
             :key="index"
             :news-style='v.name'
             :news-title='v.title'
             :news-text='v.introduction'
             :news-img='v.thumb'
+            @click.native="toArticlesDetail(v.id)"
             />
         </div>
         <div class="right">
             <ColorTabBar 
             text='视频教程'
             />
+            <VedioItems />
             <ColorTabBar 
             text='最新发布'
             />
@@ -42,7 +50,8 @@
                 <PublishItem
                 v-for="(v,k,index) in wxalArray"
                 :key="index"
-                publish-text='长沙为何会吸引大型企业入驻？腾讯为，富士康都包括在内？'
+                :publish-text='v.title'
+                :article-id='v.id'
                 />
             </div>
             <ColorTabBar 
@@ -66,6 +75,9 @@ import Item from './Item'
 import NewsItem from './NewItem'
 import ColorTabBar from './ColorTab'
 import PublishItem from './PublishItem'
+import VedioItems from './VedioItem'
+
+import {getTagesArr,} from '@/api/home.js'
 
 export default {
 data() {
@@ -93,7 +105,10 @@ data() {
 },
 //方法集合
 methods: {
-
+    //点击维修案例div 跳转到文章详情页
+    toArticlesDetail(id){
+        this.$router.push(`/article/${id}`)
+    }
 },
 //接收props传值
 props: ['fixArr','wxalArray','wxalArrayTop2',],
@@ -102,10 +117,17 @@ computed: {},
 //监控data中的数据变化
 watch: {},
 //注册组件
-components: {Title,Item,NewsItem,ColorTabBar,PublishItem,},
+components: {Title,Item,NewsItem,ColorTabBar,PublishItem,VedioItems,},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
     console.log('wxalArray',this.wxalArray)
+    getTagesArr().then(res=>{
+        if(res.data.code == 1){
+            this.tagArr = res.data.data
+        }else{
+            this.$alert(`${res.data.msg}`,'提示')
+        }
+    })
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {
@@ -120,6 +142,7 @@ mounted() {
         padding-top: 0.2rem;
         margin-bottom: 0.45rem;
         background: white;
+        cursor: pointer;
         .right{
             width: 2.87rem;
             border:1.45px solid rgba(196,200,205,.4);
@@ -172,6 +195,11 @@ mounted() {
                         padding: 0 0.22rem;
                         box-sizing: border-box;
                         line-height: 0.6rem;
+                    }
+                    img{
+                        height: 100%;
+                        width: 100%;
+                        border-radius: 0.03rem;
                     }
                 }
             }

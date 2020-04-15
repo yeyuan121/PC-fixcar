@@ -11,7 +11,9 @@
             />
         </div>
         <Notice />
-        <Message />
+        <Message 
+        :data-array-object='arr'
+        />
     </div>
 </template>
 
@@ -47,7 +49,13 @@ data() {
                 title:'监控设备',
                 text:'同轴监控，数字监控，人脸识别监控，家用无线监控，停车道闸系统，门禁考勤系统 …',
             }
-        ]
+        ],
+        arr:
+        {
+            1:[],
+            2:[],
+            3:[],
+        }
     }
 },
 //方法集合
@@ -64,9 +72,15 @@ watch: {},
 components: {Title,Item,Notice,Message,},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
-    let cid = this.$route.meta
-    getArticle({cid}).then(res=>{
-        // console.log(res)
+    getArticle().then(res=>{
+        if(res.data.code == 1){
+            const array = res.data.data
+            for(let item of array){
+                this.arr[item.type].push(item)
+            }
+        }else{
+            this.$alert('数据获取失败','提示')
+        }
     })
 },
 //生命周期 - 挂载完成（可以访问DOM元素）

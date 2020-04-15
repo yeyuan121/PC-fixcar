@@ -6,9 +6,13 @@
             />
             <img src="@/assets/img/tests.png" alt="" class="img">
             <Item
+            v-for="(v,k,index) in dataArrayObject['2']"
+            :key="index"
             mark='HOT'
-            title="1111111111"
-            text='22222222222'
+            :title="v.title"
+            :text='v.introduction'
+            :left-img-path='v.thumb'
+            @click.native='hotCaseItemToArticleDetail(v.id)'
             />
             <Title 
             title-name='行业资讯'
@@ -85,10 +89,13 @@ return {
 },
 //方法集合
 methods: {
-
+    //热门案例点击跳转到文章详情页
+    hotCaseItemToArticleDetail(id){
+        this.$router.push(`/article/${id}`)
+    }
 },
 //接收props传值
-props: [],
+props: ['dataArrayObject',],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化
@@ -97,7 +104,7 @@ watch: {},
 components: {Title,Item,ColorTitle,Items,},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
-
+    console.log(this.dataArrayObject,'message组件')
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {

@@ -25,13 +25,15 @@ import Detail from './views/profile/component/Detail.vue'
 import Changepwd from './views/profile/component/ChangePassword'
 import Article from './views/article/Article.vue'
 
-
+import vRegion from 'v-region'
+Vue.use(vRegion)
 Vue.use(VueRouter)
 Vue.use(ElementUI)
 
 import './common/rem'
 import './common/request'
-import 'normalize.css' 
+import 'normalize.css'
+import './assets/icon/iconfont.css'
 
 //引入api文件
 import './api/index'
@@ -48,6 +50,11 @@ axios.post('http://api.ddctou.net/api/Routing/getRouting')
       path = Home
     }else if(item.name == '电脑维修'){
       path = Computer
+      //注册电脑维修文章路由
+      routes.push({
+        path:item.alias + ':id',
+        component: Article
+      })
     }else if(item.name == '网络维修'){
       path = Network
     }else if(item.name == '办公设备'){

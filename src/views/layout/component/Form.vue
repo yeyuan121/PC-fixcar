@@ -10,26 +10,91 @@
             </span>
         </div>
         <div class="class2">
-            <input type="text" name="b1" id="" placeholder='输入手机号码' class="p4">
-            <input type="text" name="b2" id="" placeholder='输入验证码' class="p5">
-            <input type="text" name="b3" id="" placeholder='输入地址' class="p5">
-            <input type="text" name="b4" id="" placeholder='选择故障类型' class="p4">
-            <div class="button">立即下单</div>
+            <input type="text" name="b1" id="" placeholder='输入手机号码' class="p4" v-model="phone">
+            <input type="text" name="b2" id="" placeholder='输入验证码' class="p5" v-model="code">
+            <input type="text" name="b3" id="" placeholder='输入地址' class="p5" v-model="address">
+            <div class="position1" @click="openSelectFixTypeCart()">
+                <input type="text" name="b4" id="" placeholder='选择故障类型' class="p4" readonly="readonly" :value="faultObject?faultObject.fault_name:'选择故障类型'">
+                <div class="position2" v-if="selectFixTypeShow">
+                    <div 
+                    class="position2child1" 
+                    @click="selectFixType(v)"
+                    v-for="(v,k,index) in faultArray"
+                    :key="index"
+                    >
+                    {{v.fault_name}}
+                    </div>
+                </div>
+            </div>
+            <div class="button" @click="makeOrder()">立即下单</div>
         </div>
-        <div class="yzm">获取验证码</div>
+        <div class="yzm" @click="takeCode()">获取验证码</div>
     </div>
 </template>
 
 <script>
-export default {
-data() {
-return {
+import {toOrder,getFault,} from '@/api/order'
+import {getCode,} from '@/api/register'
 
-}
-},
+export default {
+    data() {    
+        return {
+            selectFixTypeShow:false,//故障类型下拉选择框是否显示
+            phone:'',
+            code:'',
+            address:'',
+            faultArray:[],//故障类型数组
+            faultObject:null,//已选择的故障类型对象
+        }
+    },
 //方法集合
 methods: {
+    //选择故障类型点击回调函数
+    selectFixType(obj){
+        this.faultObject = obj
+        this.selectFixTypeShow = !this.selectFixTypeShow
+    },
+    //打开故障类型下拉选择框
+    openSelectFixTypeCart(){
+        this.selectFixTypeShow = !this.selectFixTypeShow
+    },
+    //下单
+    makeOrder(){
+        let mobile = this.phone
+        let code = this.code
+        let address = this.address
+        let users_id = ''
 
+        if(localStorage.getItem('nc_user')){
+            users_id = JSON.parse(localStorage.getItem('nc_user')).id
+        }
+
+        if(this.faultObject === null){
+            this.$alert('请选择故障类型','提示')
+            return
+        }
+        
+        let fault_id = this.faultObject.id
+        toOrder({mobile,code,address,fault_id,users_id,}).then(res=>{
+            if(res.data.code == 1){
+                this.$alert(`${res.data.msg}`,'提示')
+            }else{
+                this.$alert(`${res.data.msg}`,`提示`)
+            }
+        })
+    },
+    //获取验证码
+    takeCode(){
+        let phone = this.phone
+        let event = 'order'
+        getCode({phone,event}).then(res=>{
+            if(res.data.code == 1){
+                this.$alert('发送验证码成功','提示')
+            }else{
+                this.$alert(`${res.data.msg}`,'提示')
+            }
+        })
+    }
 },
 //接收props传值
 props: [],
@@ -41,7 +106,13 @@ watch: {},
 components: {},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
-
+    getFault().then(res=>{
+        if(res.data.code == 1){
+            this.faultArray = res.data.data
+        }else{
+            this.$alert('获取故障类型数据失败','提示')
+        }
+    })
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {
@@ -93,6 +164,7 @@ mounted() {
                 box-sizing: border-box;
                 padding-left: 0.15rem;
                 border: 0px solid red;
+                color: rgb(102, 102, 102); 
             }
             .button{
                 background: rgb(252, 72, 17);
@@ -109,6 +181,31 @@ mounted() {
             }
             .p4{
                 width: 1.38rem;
+                cursor: pointer;
+            }
+            .position1{
+                position: relative;
+                .position2{
+                    display: flex;
+                    flex-direction: column;
+                    position: absolute;
+                    height: 1.5rem;
+                    // border: 0.01rem solid black;
+                    width: 100%;
+                    top: 0.5rem;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    cursor: pointer;
+                    background: white;
+                    border-radius: 0.03rem;
+                    div{
+                        flex: 1;
+                        color: rgb(102, 102, 102);
+                        line-height: 0.38rem;
+                        text-align: center;
+                        // border-bottom: 0.01rem solid black;
+                    }
+                }
             }
         }
         .yzm{

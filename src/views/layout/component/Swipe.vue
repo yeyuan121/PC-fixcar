@@ -52,7 +52,7 @@ export default {
     created(){
       getCarousel().then(res=>{
         if(res.data.code == 1){
-          this.carouselArr = res.data.data;console.log(this.carouselArr)
+          this.carouselArr = res.data.data
         }else{
           alert('获取轮播图数据失败')
         }

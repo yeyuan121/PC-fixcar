@@ -30,6 +30,7 @@
                     v-for="(v,k,index) in allArticleArray[current][current2]"
                     :key="index"
                     :left-img-path='v.thumb'
+                    @click.native="goToDetail(v.id)"
                     >
                         <template v-slot:date>
                             [{{v.create_time}}]
@@ -103,6 +104,10 @@ methods: {
         }else{
             this.historyArr.splice(2,1,{name,url:'',})
         }
+    },
+    //跳转去文章详情页
+    goToDetail(id){
+        this.$router.push(`/article/${id}`)
     }
 },
 //组件注册

@@ -80,6 +80,7 @@ mounted() {
             overflow: hidden;
         }
         .flex-container{
+            margin-top: 0.66rem;
             height: 6.3rem;
             padding: 0 4.26rem;
             padding-bottom: 0.6rem;
