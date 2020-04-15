@@ -52,7 +52,7 @@ axios.post('http://api.ddctou.net/api/Routing/getRouting')
       path = Computer
       //注册电脑维修文章路由
       routes.push({
-        path:item.alias + ':id',
+        path:item.alias + '/:id',
         component: Article
       })
     }else if(item.name == '网络维修'){
@@ -121,7 +121,7 @@ axios.post('http://api.ddctou.net/api/Routing/getRouting')
     base: process.env.BASE_URL,
     routes
   })
-  // console.log(router)
+  console.log(router,'路由表')
   new Vue({
     router,
     store,

@@ -30,7 +30,7 @@
                     v-for="(v,k,index) in allArticleArray[current][current2]"
                     :key="index"
                     :left-img-path='v.thumb'
-                    @click.native="goToDetail(v.id)"
+                    @click.native="goToDetail(v.alias,v.id)"
                     >
                         <template v-slot:date>
                             [{{v.create_time}}]
@@ -106,8 +106,8 @@ methods: {
         }
     },
     //跳转去文章详情页
-    goToDetail(id){
-        this.$router.push(`/article/${id}`)
+    goToDetail(alias,id){
+        this.$router.push(`${alias + '/' + id}`)
     }
 },
 //组件注册
