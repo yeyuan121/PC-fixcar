@@ -133,7 +133,10 @@ axios.post('http://api.ddctou.net/api/Routing/getRouting')
   new Vue({
     router,
     store,
-    render: h => h(App)
+    render: h => h(App),
+    mounted () {
+      document.dispatchEvent(new Event('render-event'))
+    }
   }).$mount('#app')
 })
 .catch(error => {
