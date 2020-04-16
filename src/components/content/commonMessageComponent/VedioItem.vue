@@ -1,10 +1,10 @@
 <template>
     <div class='containera'>
         <div class="top">
-            <img src="@/assets/img/map.jpg" alt="">
+            <img :src="videoImg" alt="">
             <img src="@/assets/img/play.png" alt="" class="playbutton">
         </div>
-        <div class="bottom">所所所所所所所所所所所所所所所所所所所所所所所</div>
+        <div class="bottom">{{videoTitle}}</div>
     </div>
 </template>
 
@@ -20,7 +20,7 @@ methods: {
 
 },
 //接收props传值
-props: [],
+props: ['videoTitle','videoImg'],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化

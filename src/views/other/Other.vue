@@ -1,17 +1,17 @@
 <template>
     <div class='other'>
-        <Tab />
+        <Tab 
+        @event='callback'
+        />
         <div class="flexcontainers">
-            <Item 
-            goods-title='标题哒哒哒哒哒哒多多多多多多多多多多多多多多多多多多多多多多'
-            old-price='3200'
-            now-price='4500'
+            <Item
+            v-for="(v,k,index) in goodsArr"
+            :key="index"
+            :goods-title='v.title'
+            :old-price='v.o_price'
+            :now-price='v.discount'
+            :goods-img='v.img'
             />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
         </div>
         <div class="page">
             <el-pagination
@@ -31,17 +31,37 @@
 import Tab from './component/Tab'
 import Item from './component/Item'
 
+import {getGoodsArr,} from '@/api/other.js'
+
 export default {
 data() {
     return {
         currentPage:0,//当前页
-
+        goodsArr:[],
     }
 },
 //方法集合
 methods: {
     handleCurrentChange(e){
         this.currentPage = e
+    },
+    //获取商品
+    getGoods(i){
+        let type = i == 6 ? '' : i
+        let page = 1
+        let limit = 10
+        getGoodsArr({type,page,limit}).then(res=>{
+            // console.log(res)
+            if(res.data.code == 1){
+                this.goodsArr = res.data.data
+            }else{
+
+            }
+        })
+    },
+    callback(data){
+        console.log(data)
+        this.getGoods(data)
     }
 },
 //接收props传值

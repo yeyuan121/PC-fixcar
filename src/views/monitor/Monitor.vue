@@ -12,6 +12,7 @@
         <CommonMessageComponent 
         :fix-arr='fixArray'
         :wxal-array='articleArray'
+        :video-array='videoArray'
         />
     </div>
 </template>
@@ -21,10 +22,12 @@ import CommonComponent from '../../components/content/commonPartOne/CommonPartOn
 import CommonMessageComponent from '../../components/content/commonMessageComponent/index'
 
 import {getCase,} from '@/api/monitor'
+import {getVideoList} from '@/api/computer.js'
 
 export default {
 data() {
     return {
+        videoArray:[],
         arr:
             [
                 '同轴监控',
@@ -89,7 +92,13 @@ created() {
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {
-
+    getVideoList({limit:10,page:1,type:4}).then(res=>{
+        if(res.data.code == 1){
+            this.videoArray = res.data.data
+        }else{
+            
+        }
+    })
 },
 }
 </script>

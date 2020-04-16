@@ -15,10 +15,10 @@
             <input type="text" name="b3" id="" placeholder='输入地址' class="p5" v-model="address">
             <div class="position1" @click="openSelectFixTypeCart()">
                 <input type="text" name="b4" id="" placeholder='选择故障类型' class="p4" readonly="readonly" :value="faultObject?faultObject.fault_name:'选择故障类型'">
-                <div class="position2" v-if="selectFixTypeShow">
+                <div class="position2" v-show="selectFixTypeShow">
                     <div 
                     class="position2child1" 
-                    @click="selectFixType(v)"
+                    @click.stop="selectFixType(v)"
                     v-for="(v,k,index) in faultArray"
                     :key="index"
                     >
@@ -52,7 +52,7 @@ methods: {
     //选择故障类型点击回调函数
     selectFixType(obj){
         this.faultObject = obj
-        this.selectFixTypeShow = !this.selectFixTypeShow
+        this.selectFixTypeShow = false
     },
     //打开故障类型下拉选择框
     openSelectFixTypeCart(){

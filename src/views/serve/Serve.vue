@@ -10,6 +10,7 @@
             :key="index"
             :background-image='v.img'
             :title="v.title"
+            @click.native='toVedioDetail(v.id)'
             />
         </div>
         <div class="fixway">
@@ -64,7 +65,10 @@ data() {
 },
 //方法集合
 methods: {
-
+    //跳转去视频详情页
+    toVedioDetail(id){
+        this.$router.push(`/playvideo/${id}`)
+    }
 },
 //接收props传值
 props: [],
@@ -78,7 +82,8 @@ components: {CommonTitleComponent,Item,},
 created() {
     let limit = 10
     let page = 1
-    getVideo({limit,page}).then(res=>{
+    let type = 5
+    getVideo({limit,page,type,}).then(res=>{
         if(res.data.code == 1){
             this.videoArray = res.data.data
         }else{

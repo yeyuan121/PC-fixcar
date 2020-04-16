@@ -13,6 +13,7 @@
         <CommonMessageComponent
         :fix-arr='fixArray'
         :wxal-array='articleObject[2]'
+        :video-array='videoArr'
         />
     </div>
 </template>
@@ -21,7 +22,7 @@
 import CommonPartComponent from '../../components/content/commonPartOne/CommonPartOne'
 import CommonMessageComponent from '../../components/content/commonMessageComponent/index'
 
-import {getArticleArr,} from '@/api/computer.js'
+import {getArticleArr,getVideoList,} from '@/api/computer.js'
 
 export default {
 data() {
@@ -81,7 +82,8 @@ data() {
                 1:[],//案例资讯
                 2:[],//维修案例
                 3:[],//行业资讯
-            }
+            },
+            videoArr:[],
     }
 },
 //方法集合
@@ -115,6 +117,16 @@ created() {
             console.log(this.articleObject)
         }else{
             alert('获取文章失败')
+        }
+    })
+    let limit = 10
+    let page = 1
+    let type = 1
+    getVideoList({limit,page,type,}).then(res=>{
+        if(res.data.code == 1){
+            this.videoArr = res.data.data
+        }else{
+            this.$alert(`${res.data.msg}`)
         }
     })
 },

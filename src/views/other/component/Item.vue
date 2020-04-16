@@ -1,7 +1,7 @@
 <template>
     <div class='item-container'>
         <div class="div1">
-            <img src="" alt="">
+            <img :src="goodsImg" alt="">
         </div>
         <div class="div2">{{goodsTitle}}</div>
         <div class="div3">
@@ -29,7 +29,7 @@ methods: {
 
 },
 //接收props传值
-props: ['goodsTitle','nowPrice','oldPrice'],
+props: ['goodsTitle','nowPrice','oldPrice','goodsImg'],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化
@@ -56,10 +56,11 @@ mounted() {
         font-size: 0.14rem;
         border-radius: 0.02rem;
         margin-bottom: 0.3rem;
+        cursor: pointer;
         .div1{
             height: 2.5rem;
             width: 2.8rem;
-            padding: 0.35rem;
+            padding: 0.25rem;
             box-sizing: border-box;
             img{
                 height: 100%;
@@ -70,12 +71,16 @@ mounted() {
             height: 0.53rem;
             width: 2.8rem;
             color: rgb(20,41,71);
+            line-height: 0.53rem;
+            font-size: 0.17rem;
         }
         .div3{
             height: 0.86rem;
             width: 2.8rem;
             display: flex;
             .child1{
+                padding-top: 0.3rem;
+                box-sizing: border-box;
                 flex: 1;
             }
             .child2{
@@ -90,8 +95,9 @@ mounted() {
                     height: 0.28rem;
                     font-weight: bold;
                     justify-content: flex-end;
-                    font-size: 0.20rem;
+                    font-size: 0.31rem;
                     color: rgb(252,94,46);
+                    margin-bottom: 0.06rem;
                     .span1{
                         font-size: 0.12rem;
                     }

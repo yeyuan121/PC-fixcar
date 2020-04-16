@@ -2,7 +2,7 @@
     <div class='conatainer'>
         <div class="div1">
             <div class="span2"><span>*</span>真实姓名</div>
-            <input type="text" name="" id="" v-model="userObject.nickname" placeholder="方便登记资料前端不会显示">
+            <input type="text" name="" id="" v-model="userObject.real_name" placeholder="方便登记资料前端不会显示">
         </div>
         <div class="div1">
             <div class="span2"><span>*</span>联系方式</div>
@@ -53,7 +53,7 @@ methods: {
     },
     //确认修改
     confirms(){
-        let username = this.userObject.nickname
+        let username = this.userObject.real_name
         let mobile = this.userObject.mobile
         let token = this.userObject.token
         let address = this.addressStr + ',' + this.addressDetail
@@ -65,6 +65,12 @@ methods: {
             address,
             email,
         }).then(res=>{
+            if(res.data.code == 1){
+                let data = res.data.data
+                localStorage.setItem('nc_user',null)
+                localStorage.setItem('nc_user',JSON.stringify(data))
+                this.userObject = JSON.parse(localStorage.getItem('nc_user'))
+            }
             this.$alert(`${res.data.msg}`,'提示')
         })
     },
@@ -172,7 +178,7 @@ mounted() {}
                     text-align: center;
                     line-height: 0.4rem;
                     color: rgb(205,206,210);
-                    font-size: 0.12rem;
+                    font-size: 0.12rem !important;
                 }
                 .rg-select__el--active{
                     box-shadow: none !important;

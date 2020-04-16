@@ -1,28 +1,28 @@
 <template>
     <div class='container'>
-        <div class="div1">
+        <div class="div1" @click="changeTab(1)">
             电脑产品
-            <div class="div1child"></div>
+            <div class="div1child" v-if="current == 1"></div>
         </div>
-        <div class="div2">
+        <div class="div2" @click="changeTab(2)">
             办公产品
-            <div class="div1child"></div>
+            <div class="div1child" v-if="current == 2"></div>
         </div>
-        <div class="div3">
+        <div class="div3" @click="changeTab(3)">
             网络产品
-            <div class="div1child"></div>    
+            <div class="div1child" v-if="current == 3"></div>    
         </div>
-        <div class="div4">
+        <div class="div4" @click="changeTab(4)">
             监控安防
-            <div class="div1child"></div>
+            <div class="div1child" v-if="current == 4"></div>
         </div>
-        <div class="div5">
+        <div class="div5" @click="changeTab(5)">
             门禁系统
-            <div class="div1child"></div>
+            <div class="div1child" v-if="current == 5"></div>
         </div>
-        <div class="div6">
+        <div class="div6" @click="changeTab(6)">
             全部
-            <div class="div1child"></div>    
+            <div class="div1child" v-if="current == 6"></div>    
         </div>
     </div>
 </template>
@@ -30,13 +30,16 @@
 <script>
 export default {
 data() {
-return {
-
-}
+    return {
+        current:0,
+    }
 },
 //方法集合
 methods: {
-
+    changeTab(i){
+        this.current = i
+        this.$emit('event',i)
+    }
 },
 //接收props传值
 props: [],
@@ -58,6 +61,7 @@ mounted() {
 </script>
 <style lang='scss' scoped>
     .container{
+        cursor: pointer;
         font-size: 0.14rem;
         width: 7.64rem;
         display: flex;

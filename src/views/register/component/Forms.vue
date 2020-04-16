@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="child13">
-                <input type="radio" name="" id="">
+                <input type="radio" name="" id="" v-model="select" value="selected">
                 <span class="spanclass1">我同意</span>
                 <span class="spanclass2">《耐诚智能科技平台注册协议》</span>
             </div>
@@ -79,6 +79,7 @@ export default {
         code:'',
         passwordCopy:'',//密码副本
         passwordIsShow:true,//密码默认显示
+        select:'',
       }
     },
     components: {
@@ -139,15 +140,21 @@ export default {
             }
         })
       },
+      //免费注册按钮点击事件
       toFreeRegister(){
           let username = this.phone
           let password = this.password
           let nickname = this.nickname ? this.nickname : ''
           let code = this.code
+          if(this.select != 'selected'){
+              this.$alert('请勾选耐城智能科技注册协议','提示')
+              return
+          }
           registerFunc({username,password,nickname,code,}).then(res=>{
               console.log(res,114)
               if(res.data.code == 1){
                   this.$alert('注册成功','提示')
+                  this.$router.push('/dl')
               }else{
                   this.$alert(`${res.data.msg}`,'提示')
               }

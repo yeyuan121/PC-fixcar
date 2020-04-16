@@ -12,6 +12,7 @@
         <CommonMessageComponent 
         :fix-arr='fixArr'
         :wxal-array='articleArr'
+        :video-array='videoArrs'
         />
     </div>
 </template>
@@ -21,6 +22,7 @@ import CommonComponent from '../../components/content/commonPartOne/CommonPartOn
 import CommonMessageComponent from '../../components/content/commonMessageComponent/index'
 
 import {getFixCase,} from '@/api/network.js'
+import {getVideoList,} from '@/api/computer.js'
 
 export default {
 data() {
@@ -61,6 +63,7 @@ data() {
             }
         ],
         articleArr:[],
+        videoArrs:[],
     }
 },
 //方法集合
@@ -83,6 +86,13 @@ created() {
             this.articleArr = res.data.data
         }else{
             alert('获取数据失败')
+        }
+    })
+    getVideoList({limit:10,page:1,type:2}).then(res=>{
+        if(res.data.code == 1){
+            this.videoArrs = res.data.data
+        }else{
+
         }
     })
 },

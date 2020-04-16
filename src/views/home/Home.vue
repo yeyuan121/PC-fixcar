@@ -14,6 +14,7 @@
         <Message 
         :data-array-object='arr'
         :tag-arr='tagArray'
+        :video-array='videoArray'
         />
     </div>
 </template>
@@ -25,10 +26,12 @@ import Notice from './component/Notice'
 import Message from '../layout/component/Message'
 
 import {getRouting,getArticle,getCarousel,getTagesArr,} from '../../api/home'
+import {getVideoList} from '@/api/computer.js'
 
 export default {
 data() {
     return {
+        videoArray:[],
         itemArr:[
             {
                 path:require('../../assets/img/7.png'),
@@ -89,6 +92,13 @@ created() {
             this.tagArray = res.data.data
         }else{
             this.$alert('获取热门标签数据失败','提示')
+        }
+    })
+    getVideoList({limit:10,page:1,type:6}).then(res=>{
+        if(res.data.code == 1){
+            this.videoArray = res.data.data
+        }else{
+            
         }
     })
 },

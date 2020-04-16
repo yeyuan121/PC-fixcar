@@ -33,7 +33,7 @@
                 <div>
                     <img src="@/assets/img/sock.png" alt="">
                 </div>
-                <input type="text" name="" id="" placeholder="密码" v-model="password">
+                <input type="password" name="" id="" placeholder="密码" v-model="password">
                 <div class="getcode" v-if="currentTab == 2" @click="getPhoneCode()">
                     {{this.timer <=0 ? '获取短信码' : this.timer}}
                     <div class="getcodechild"></div>
@@ -135,6 +135,7 @@ export default {
                     let data = JSON.stringify(res.data.data)
                     this.saveUserMessage(data)
                     this.$alert('登陆成功','提示')
+                    this.$router.push('/')
                 }else{
                     this.$alert(`${res.data.msg}`, '登陆失败', {
                         confirmButtonText: '确定'
@@ -146,9 +147,10 @@ export default {
             let code = this.password
             phoneCodeLogin({username,code}).then(res=>{
                 if(res.data.code == 1){
-                    let data = res.data.data
+                    let data = res.data.data;console.log(data,2000)
                     data = JSON.stringify(data)
                     this.saveUserMessage(data)
+                    this.$router.push('/')
                 }
                 this.$alert(`${res.data.msg}`,'提示')
             })

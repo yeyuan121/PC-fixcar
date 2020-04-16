@@ -202,6 +202,7 @@ mounted() {
             box-sizing:border-box;
             font-size: 0.135rem;
             color: rgb(145,152,161);
+
             .left1{
                 height: 0.33rem;
                 font-size: 0.2rem;
@@ -221,19 +222,35 @@ mounted() {
                     display: flex;
                     align-items: center;
                     img{
+                        height: 0.15rem;
+                        width: 0.15rem;
                         margin-right: 0.05rem;
                     }
                 }
                 .leftchild2{
+                    display: flex;
+                    align-items: center;
+                    img{
+                        height: 0.15rem;
+                        width: 0.15rem;
+                        margin-right: 0.05rem;
+                    }
                     margin: 0 0.35rem;
                 }
                 .leftchild3{
                     margin-right: 0.3rem;
-                }
+                }              
             }
             .left3{
                 letter-spacing: 0.015rem;
                 line-height: 0.35rem;
+                img{
+                    width: 100%;
+                    height: 0.1rem;
+                }
+                ::v-deep img{
+                    width: 100%;
+                }
             }
         }
     }

@@ -58,7 +58,12 @@
             <ColorTabBar 
             text='视频教程'
             />
-            <VedioItems />
+            <VedioItems
+            v-for="(v,k,index) in videoArray"
+            :key="index"
+            :video-title='v.title'
+            :video-img='v.img'
+            />
             <ColorTabBar 
             text='最新发布'
             />
@@ -109,7 +114,7 @@ methods: {
     }
 },
 //接收props传值
-props: ['dataArrayObject','tagArr','wxalArray',],
+props: ['dataArrayObject','tagArr','wxalArray','videoArray'],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化

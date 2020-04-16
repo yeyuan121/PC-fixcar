@@ -7,7 +7,7 @@
         </div>
         <div class="div1">
             <div class="div1child1">
-                关于厦门耐诚智能科技有限公司
+                {{aboutData.title}}
             </div>
             <div class="div1child2">
                 <div class="left">
@@ -39,25 +39,25 @@
                 <div class="div2child2div1">
                     <img src="@/assets/img/about1.png" alt="">
                     <div class="icondesc">
-                        固话 | 0592-6666915
+                        固话 | {{aboutData.fixed_line}}
                     </div>
                 </div>
                 <div class="div2child2div2">
                     <img src="@/assets/img/about2.png" alt="">
                     <div class="icondesc">
-                        手机 | 18030244550
+                        手机 | {{aboutData.phone}}
                     </div>
                 </div>
                 <div class="div2child2div3">
                     <img src="@/assets/img/about3.png" alt="">
                     <div class="icondesc">
-                        微信 | 18030244550
+                        微信 | {{aboutData.wechat}}
                     </div>
                 </div>
                 <div class="div2child2div4">
                     <img src="@/assets/img/about4.png" alt="">
                     <div class="icondesc">
-                        QQ | 635409869
+                        QQ | {{aboutData.qq}}
                     </div>
                 </div>
             </div>
@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import {getAboutUsData,} from '@/api/about.js'
 export default {
 //组件状态
 data() {
@@ -105,7 +106,8 @@ let self = this;
           window: {
             position: [121.59996, 31.197646],
             content:'厦门市海沧区嵩屿南路94号',
-          }
+          },
+          aboutData:{}
         }
 },
 //方法集合
@@ -124,7 +126,16 @@ props:[],
 //计算属性
 computed: {},
 //钩子函数
-created() {},
+created() {
+    getAboutUsData().then(res=>{
+        console.log(res)
+        if(res.data.code == 1){
+            this.aboutData = res.data.data
+        }else{
+            this.$alert(`${res.data.msg}`)
+        }
+    })
+},
 mounted() {}
 }
 </script>
