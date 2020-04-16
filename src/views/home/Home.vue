@@ -13,6 +13,7 @@
         <Notice />
         <Message 
         :data-array-object='arr'
+        :tag-arr='tagArray'
         />
     </div>
 </template>
@@ -23,7 +24,7 @@ import Item from './component/Item'
 import Notice from './component/Notice'
 import Message from '../layout/component/Message'
 
-import {getRouting,getArticle,getCarousel,} from '../../api/home'
+import {getRouting,getArticle,getCarousel,getTagesArr,} from '../../api/home'
 
 export default {
 data() {
@@ -55,7 +56,8 @@ data() {
             1:[],
             2:[],
             3:[],
-        }
+        },
+        tagArray:[],//热门标签数组
     }
 },
 //方法集合
@@ -80,6 +82,13 @@ created() {
             }
         }else{
             this.$alert('数据获取失败','提示')
+        }
+    })
+    getTagesArr().then(res=>{
+        if(res.data.code == 1){
+            this.tagArray = res.data.data
+        }else{
+            this.$alert('获取热门标签数据失败','提示')
         }
     })
 },

@@ -74,6 +74,7 @@ mounted() {}
                     height: 0.4rem;
                     color: rgb(182,186,192);
                     font-size: 0.12rem;
+                    // white-space: nowrap;
                 }
             }
         }

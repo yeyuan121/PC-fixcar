@@ -1,9 +1,10 @@
 <template>
     <div class='container'>
-        <img src="" alt="">
+        <img :src="backgroundImage" alt="">
         <div class="child">
             <img src="@/assets/img/play.png" alt="">
         </div>
+        <div class="child1">{{title}}</div>
     </div>
 </template>
 
@@ -19,7 +20,7 @@ methods: {
 
 },
 //接收props传值
-props: [],
+props: ['backgroundImage','title',],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化
@@ -43,9 +44,11 @@ mounted() {
         width: 3.63rem;
         border-radius: 0.05rem;
         background: black;
+        cursor: pointer;
         img{
             height: 100%;
             width: 100%;
+            border-radius: 0.05rem;
         }
         .child{
             height: 0.32rem;
@@ -62,6 +65,18 @@ mounted() {
                 height: 0.32rem;
                 width: 0.32rem;
             }
+        }
+        .child1{
+            width: 100%;
+            height: 0.37rem;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 0 0.33rem;
+            box-sizing: border-box;
+            color: white;
+            font-size: 0.14rem;
+            line-height: 0.37rem;
         }
     }
 </style>

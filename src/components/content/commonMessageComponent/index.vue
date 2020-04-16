@@ -52,6 +52,7 @@
                 :key="index"
                 :publish-text='v.title'
                 :article-id='v.id'
+                :article-alias='v.alias'               
                 />
             </div>
             <ColorTabBar 
@@ -159,7 +160,7 @@ mounted() {
                 div{
                     font-size: 0.11rem;
                     color: rgb(152,159,167);
-                    margin-right: 0.25rem;
+                    margin-right: 0.1rem;
                     margin-bottom: 0.1rem;
                     cursor: pointer;
                 }

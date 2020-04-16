@@ -5,7 +5,7 @@
         <div class="div3">
             <slot />
         </div>
-        <div class="div4">查看更多></div>
+        <div class="div4" @click="handleClick">查看更多></div>
     </div>
 </template>
 
@@ -18,7 +18,9 @@ return {
 },
 //方法集合
 methods: {
-
+    handleClick(){
+        this.$router.push('/alzx')
+    }
 },
 //接收props传值
 props: ['TitleName'],
@@ -43,6 +45,7 @@ mounted() {
         display: flex;
         height: 0.28rem;
         margin-bottom: 0.25rem;
+        cursor: pointer;
         .div1{
             height: 100%;
             width: 0.04rem;

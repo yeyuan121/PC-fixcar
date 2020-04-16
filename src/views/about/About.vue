@@ -104,7 +104,7 @@ let self = this;
         //   },
           window: {
             position: [121.59996, 31.197646],
-            content:'hello',
+            content:'厦门市海沧区嵩屿南路94号',
           }
         }
 },
@@ -237,6 +237,30 @@ mounted() {}
                 height: 100%;
                 width: 100%;
                 border-radius: 0.03rem;
+            }
+        }
+        .amap-demo{
+            ::v-deep .amap-container{
+                font-size: 0.13rem;
+                a{
+                    display: none;
+                }
+                .amap-info-content{
+                    min-width: 2.91rem;
+                    height: 0.54rem;
+                    line-height: 0.54rem;
+                    font-size: 0.19rem;
+                    font-weight: normal;
+                    text-align: center;
+                    background: rgba(16,19,16,0.7);
+                    border-radius: 0.03rem;
+                    color: white;
+                    border: none;
+                    white-space: nowrap;
+                }
+                .amap-info-sharp{
+                    display: none;
+                }
             }
         }
     }

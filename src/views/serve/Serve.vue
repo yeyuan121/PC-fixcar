@@ -6,8 +6,10 @@
         />
         <div class="flex_container">
             <Item 
-            v-for="(v,k,index) in 6"
+            v-for="(v,k,index) in videoArray"
             :key="index"
+            :background-image='v.img'
+            :title="v.title"
             />
         </div>
         <div class="fixway">
@@ -41,6 +43,8 @@
 import CommonTitleComponent from '../../components/content/commonPartOne/CommonPartOne'
 import Item from './component/Item'
 
+import {getVideo,} from '@/api/serve.js'
+
 export default {
 data() {
     return {
@@ -54,7 +58,8 @@ data() {
                 name:'服务',
                 url:'/fw'
             }
-        ]
+        ],
+        videoArray:[],//视频存放数组
     }
 },
 //方法集合
@@ -71,7 +76,15 @@ watch: {},
 components: {CommonTitleComponent,Item,},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
-
+    let limit = 10
+    let page = 1
+    getVideo({limit,page}).then(res=>{
+        if(res.data.code == 1){
+            this.videoArray = res.data.data
+        }else{
+            this.$alert(`${res.data.msg}`,'提示')
+        }
+    })
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {

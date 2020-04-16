@@ -1,14 +1,14 @@
 <template>
 <div class='container'>
     <div class="div1">
-        <span>电脑维修</span><Lines />
-        <span>网络维修</span><Lines />
-        <span>办公设备</span><Lines />
-        <span>监控设备</span><Lines />
-        <span>其他产品</span><Lines />
-        <span>服务</span><Lines />
-        <span>案例资讯</span><Lines />
-        <span>关于我们</span>
+        <span @click="nav(1)">电脑维修</span><Lines />
+        <span @click="nav(2)">网络维修</span><Lines />
+        <span @click="nav(3)">办公设备</span><Lines />
+        <span @click="nav(4)">监控设备</span><Lines />
+        <span @click="nav(5)">其他产品</span><Lines />
+        <span @click="nav(6)">服务</span><Lines />
+        <span @click="nav(7)">案例资讯</span><Lines />
+        <span @click="nav(8)">关于我们</span>
     </div>
     <div class="div2"></div>
     <div class="div3">
@@ -66,7 +66,25 @@ return {
 },
 //方法集合
 methods: {
-
+    nav(id){
+        if(id == 1){
+            this.$router.push('/dnwx')
+        }else if(id == 2){
+            this.$router.push('/wlwx')
+        }else if(id == 3){
+            this.$router.push('/bgsb')
+        }else if(id == 4){
+            this.$router.push('/jksb')
+        }else if(id == 5){
+            this.$router.push('/qtcp')
+        }else if(id == 6){
+            this.$router.push('/fw')
+        }else if(id == 7){
+            this.$router.push('/alzx')
+        }else if(id == 8){
+            this.$router.push('/gywm')
+        }
+    }
 },
 //接收props传值
 props: [],
@@ -78,7 +96,7 @@ watch: {},
 components: {Lines,},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
-
+    console.log(this.$router)
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {
@@ -98,6 +116,7 @@ mounted() {
             height: 0.36rem;
             display: flex;
             align-items: center;
+            cursor: pointer;
             span{
                 color: grey;
                 font-size: 0.14rem;

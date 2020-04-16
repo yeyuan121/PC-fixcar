@@ -1,6 +1,6 @@
 <template>
     <div class='container'>
-        <img src="@/assets/img/logo3.png" alt="" class="img1">
+        <img src="@/assets/img/logo3.png" alt="" class="img1" @click="toHome">
         <img src="@/assets/img/word.png" alt="" class="img2">
         <div class="div">
             <img src="@/assets/img/phone.png" alt="">
@@ -19,7 +19,11 @@ data() {
     }
 },
 //方法集合
-methods: {},
+methods: {
+    toHome(){
+        this.$router.push('/')
+    }
+},
 //组件注册
 components: {},
 //组件传值
@@ -38,6 +42,7 @@ mounted() {}
         border-bottom: 1px solid rgb(249,249,249);
         display: flex;
         align-items: center;
+        cursor: pointer;
         .img1{
             height: 0.46rem;
             width: 1.5rem;

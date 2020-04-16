@@ -18,11 +18,11 @@ return {
 methods: {
     //跳转到文章详情页
     toArticleDetail(){
-        this.$router.push(`/article/${this.articleId}`)
+        this.$router.push(`${this.articleAlias + '/' + this.articleId + '.html'}`)
     }
 },
 //接收props传值
-props: ['publishText','articleId',],
+props: ['publishText','articleId','articleAlias',],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化

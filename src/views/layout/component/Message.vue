@@ -5,7 +5,7 @@
             title-name='热门案例'
             />
             <!--热门案例数组的第一个数据对象展示区-->
-            <div class="first" @click="hotCaseItemToArticleDetail(dataArrayObject['2'][0].alias,dataArrayObject['2'][0].id)">
+            <div class="first" @click="hotCaseItemToArticleDetail(dataArrayObject['2'][0].alias,dataArrayObject['2'][0].id)" v-if="dataArrayObject['2'][0]">
                 <img :src="dataArrayObject['2'][0].thumb" alt="" class="img">
                 <div class="position2first">
                     <div class="firstchild1">{{dataArrayObject['2'][0].introduction}}</div>
@@ -25,62 +25,62 @@
             :left-img-path='v.thumb'
             @click.native='hotCaseItemToArticleDetail(v.alias,v.id)'
             />
-            <Title 
-            title-name='行业资讯'
-            >
-            </Title>           
-            <img src="@/assets/img/tests.png" alt="" class="img">
-            <div class="hangye">
-                <Items 
-                icon-name='电脑维修'
-                title-name='1111111111111111111111111111111'
-                text='2222222222222222222222222222222222222222'
-                /><Items 
-                icon-name='电脑维修'
-                title-name='1111111111111111111111111111111'
-                text='2222222222222222222222222222222222222222'
-                /><Items 
-                icon-name='电脑维修'
-                title-name='1111111111111111111111111111111'
-                text='2222222222222222222222222222222222222222'
-                /><Items 
-                icon-name='电脑维修'
-                title-name='1111111111111111111111111111111'
-                text='2222222222222222222222222222222222222222'
-                /><Items 
-                icon-name='电脑维修'
-                title-name='1111111111111111111111111111111'
-                text='2222222222222222222222222222222222222222'
-                /><Items 
-                icon-name='电脑维修'
-                title-name='1111111111111111111111111111111'
-                text='2222222222222222222222222222222222222222'
+            <div class="titleconatainers">
+                <Title 
+                title-name='行业资讯'
                 />
-                <Items 
-                icon-name='电脑维修'
-                title-name='1111111111111111111111111111111'
-                text='2222222222222222222222222222222222222222'
-                /><Items 
-                icon-name='电脑维修'
-                title-name='1111111111111111111111111111111'
-                text='2222222222222222222222222222222222222222'
+            </div>          
+            <!--行业资讯数组的第一个数据对象展示区-->
+            <div class="first" @click="hotCaseItemToArticleDetail(dataArrayObject['3'][0].alias,dataArrayObject['3'][0].id)" v-if="dataArrayObject['3'][0]">
+                <img :src="dataArrayObject['3'][0].thumb" alt="" class="img">
+                <div class="position2first">
+                    <div class="firstchild1">{{dataArrayObject['3'][0].introduction}}</div>
+                    <div class="firstchild2">
+                        {{dataArrayObject['3'][0].create_time}}
+                        {{dataArrayObject['3'][0].reading}}
+                    </div>
+                </div>
+            </div>
+            <!-- -->
+            <div class="hangye">
+                <Items
+                v-for="(v,k,index) in dataArrayObject['3'].slice(1)"
+                :key="index"
+                :icon-name='v.name'
+                :title-name='v.title'
+                :text='v.introduction'
+                :article-alias='v.alias'
+                :article-id='v.id'
                 />
             </div>
         </div>
-        <div class="part2">
-            <div class="main">
-                <ColorTitle 
-                title-name='对应地区'
+        <div class="right">
+            <ColorTabBar 
+            text='视频教程'
+            />
+            <VedioItems />
+            <ColorTabBar 
+            text='最新发布'
+            />
+            <div class="publish_container">
+                <PublishItem
+                v-for="(v,k,index) in dataArrayObject['2']"
+                :key="index"
+                :publish-text='v.title'
+                :article-id='v.id'
+                :article-alias='v.alias'               
                 />
-                <ColorTitle 
-                title-name='视频教程'
-                />
-                <ColorTitle 
-                title-name='最新发布'
-                />
-                <ColorTitle 
-                title-name='热门标签'
-                />
+            </div>
+            <ColorTabBar 
+            text='热门标签'
+            />
+            <div class="tag_flex_container">
+                <div
+                v-for="(v,k,index) in tagArr"
+                :key="index"
+                >
+                    {{v.name}}
+                </div>
             </div>
         </div>
     </div>
@@ -91,6 +91,9 @@ import Title from './Title'
 import Item from './Item'
 import ColorTitle from './ColorTitle'
 import Items from './Items'
+import ColorTabBar from '../../../components/content/commonMessageComponent/ColorTab'
+import PublishItem from '../../../components/content/commonMessageComponent/PublishItem'
+import VedioItems from '../../../components/content/commonMessageComponent/VedioItem'
 
 export default {
 data() {
@@ -106,13 +109,13 @@ methods: {
     }
 },
 //接收props传值
-props: ['dataArrayObject',],
+props: ['dataArrayObject','tagArr','wxalArray',],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化
 watch: {},
 //注册组件
-components: {Title,Item,ColorTitle,Items,},
+components: {Title,Item,ColorTitle,Items,ColorTabBar,PublishItem,VedioItems,},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
     console.log(this.dataArrayObject,'message组件')
@@ -133,7 +136,8 @@ mounted() {
         .part1{
             width: 7.15rem;
             height: 100%;
-            // background: brown;
+            padding: 0 0.47rem;
+            box-sizing: border-box;
             .img{
                 height: 2.44rem;
                 width: 100%;
@@ -143,11 +147,14 @@ mounted() {
                 flex-wrap: wrap;
                 justify-content: space-between;
             }
+            .titleconatainers{
+                margin-top: 0.25rem;
+            }
             .first{
                 height: 2.4rem;
                 position: relative;
                 cursor: pointer;
-                margin-bottom: 0.10rem;
+                margin-bottom: 0.25rem;
                 img{
                     border-radius: 0.03rem;
                     height: 100%;
@@ -166,6 +173,9 @@ mounted() {
                     line-height: 0.5rem;
                     .firstchild1{
                         width: 4.7rem;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
                     .firstchild2{
                         flex: 1;
@@ -174,18 +184,26 @@ mounted() {
                 }
             }
         }
-        .part2{
-            width: 2.82rem;
-            height: 100%;
-            // background: burlywood;
-            padding-left: 0.4rem;
+        .right{
+            width: 2.87rem;
+            border:1.45px solid rgba(196,200,205,.4);
+            padding: 0.2rem 0.15rem;
             box-sizing: border-box;
-            .main{
-                height: 100%;
-                border: 0.01rem solid rgb(228, 230, 233);
-                box-sizing: border-box;
-                padding: 0.2rem;
-                font-size: 0.14rem;
+            border-radius: 0.01rem;
+            .publish_container{
+                margin-top: 0.15rem;
+            }
+            .tag_flex_container{
+                display: flex;
+                flex-wrap: wrap;
+                padding: 0.22rem;
+                div{
+                    font-size: 0.11rem;
+                    color: rgb(152,159,167);
+                    margin-right: 0.1rem;
+                    margin-bottom: 0.1rem;
+                    cursor: pointer;
+                }
             }
         }
     }

@@ -14,9 +14,9 @@
                 <img src="@/assets/img/code1.png" alt="">
             </div>
             <div class="child11 addmargin">
-                <div class="child11child1">手机/邮箱</div>
+                <div class="child11child1">手机号</div>
                 <div class="child11child2">
-                    <input type="text" name="" id="" placeholder="请输入邮箱或中国大陆手机号" v-model="phone">
+                    <input type="text" name="" id="" placeholder="请输入中国大陆手机号" v-model="phone">
                 </div>
             </div>
             <div class="child11 addmargin">
@@ -24,6 +24,8 @@
                 <div class="child11child2">
                     <input type="text" name="" id="" placeholder="4-20个字符,区分大小写" v-model="password">
                 </div>
+                <i class="iconfont icon-yincangmima" @click="hidePassword()" v-if="passwordIsShow"></i>
+                <i class="iconfont icon-mimaxianshi" @click="hidePassword()" v-else></i>
             </div>
             <div class="child11">
                 <div class="child11child1">验证码</div>
@@ -75,6 +77,8 @@ export default {
         phone:'',
         password:'',
         code:'',
+        passwordCopy:'',//密码副本
+        passwordIsShow:true,//密码默认显示
       }
     },
     components: {
@@ -131,7 +135,7 @@ export default {
             if(res.data.code == 1){
                 this.$alert('发送验证码成功','提示')
             }else{
-                this.$alert('发送验证码失败','提示')
+                this.$alert(`${res.data.msg}`,'提示')
             }
         })
       },
@@ -148,6 +152,16 @@ export default {
                   this.$alert(`${res.data.msg}`,'提示')
               }
           })
+      },
+      //隐藏密码
+      hidePassword(){
+          if(this.passwordIsShow){
+              this.passwordCopy = this.password
+              this.password = '**********'
+          }else{
+              this.password = this.passwordCopy
+          }
+          this.passwordIsShow = !this.passwordIsShow   
       }
     }
 }
@@ -159,9 +173,17 @@ export default {
         padding: 0 5.04rem;
         padding-top: 1.1rem;
         box-sizing: border-box;
+        input{
+            box-sizing: border-box;
+            padding-left: 0.1rem;
+            padding-bottom: 0.07rem;
+        }
         .div1{
             width: 3.87rem;
             border-radius: 0.05rem;
+        }
+        i{
+            font-size: 0.16rem;
         }
         .div2{
             cursor: pointer;
@@ -256,15 +278,13 @@ export default {
                 color:   rgb(201,203,207);
             }
             :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-                color:    #909;
-                opacity:  1;
+                color:   rgb(201,203,207);
             }
             ::-moz-placeholder { /* Mozilla Firefox 19+ */
-                color:    #909;
-                opacity:  1;
+                color:   rgb(201,203,207);
             }
             :-ms-input-placeholder { /* Internet Explorer 10-11 */
-                color:    #909;
+                color:   rgb(201,203,207);
             }
         }
     }

@@ -126,7 +126,7 @@ mounted() {}
             height: 1.37rem;
             padding-left: 0.9rem;
             textarea{
-                width: 3.68rem;
+                width: 3.75rem;
                 border-radius: 0.03rem;
                 outline: none;
                 border: 0.01rem solid rgb(223,224,227);
@@ -161,7 +161,25 @@ mounted() {}
         }
         .v-region{
             display: flex;
+            height: 0.4rem !important;
             width: 3.74rem !important;
+            ::v-deep .rg-select{
+                height: 100%;
+                flex: 1;
+                .rg-select__el{
+                    height: 100%;
+                    padding: 0 !important;
+                    text-align: center;
+                    line-height: 0.4rem;
+                    color: rgb(205,206,210);
+                    font-size: 0.12rem;
+                }
+                .rg-select__el--active{
+                    box-shadow: none !important;
+                    outline: none !important;
+                    border: 0.01rem solid rgb(223,224,227);
+                }
+            }
         }
         .container>>>.v-dropdown-caller{
             flex: 1 !important;

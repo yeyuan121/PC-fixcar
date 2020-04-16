@@ -34,8 +34,8 @@
                     <img src="@/assets/img/sock.png" alt="">
                 </div>
                 <input type="text" name="" id="" placeholder="密码" v-model="password">
-                <div class="getcode" v-if="currentTab == 2">
-                    获取短信码
+                <div class="getcode" v-if="currentTab == 2" @click="getPhoneCode()">
+                    {{this.timer <=0 ? '获取短信码' : this.timer}}
                     <div class="getcodechild"></div>
                 </div>
             </div>
@@ -53,7 +53,8 @@
 import { slider, slideritem } from 'vue-concise-slider'
 import FormBottom from './FormBottom'
 
-import {loginFunc,} from '@/api/login'
+import {loginFunc,phoneCodeLogin,} from '@/api/login'
+import {getCode,} from '@/api/register'
 
 export default {
    data () {
@@ -63,8 +64,8 @@ export default {
         //Sliding configuration [obj]
         options: {
           currentPage: 0,
-          thresholdDistance:500,
-          thresholdTime:100,
+          thresholdDistance:100,
+          thresholdTime:500,
           autoplay:4000,
           loop:true,
         //   direction:'vertical',
@@ -76,6 +77,7 @@ export default {
         currentTab:1,//登陆方式切换tab
         phone:'',
         password:'',
+        timer:0,
       }
     },
     components: {
@@ -124,23 +126,56 @@ export default {
           this.$router.push('/register')
       },
       toLogin(){//登陆操作
-          let username = this.phone
-          let password = this.password
-          loginFunc({username,password,}).then(res=>{
-              if(res.data.code == 1){
-                res.data.data['token'] = res.data.token
-                let data = JSON.stringify(res.data.data)
-                this.saveUserMessage(data)
-                this.$alert('登陆成功','提示')
-              }else{
-                this.$alert(`${res.data.msg}`, '登陆失败', {
-                    confirmButtonText: '确定'
-                })               
-              }
-          })
+        if(this.currentTab == 1){//账号密码登录
+            let username = this.phone
+            let password = this.password
+            loginFunc({username,password,}).then(res=>{
+                if(res.data.code == 1){
+                    res.data.data['token'] = res.data.token
+                    let data = JSON.stringify(res.data.data)
+                    this.saveUserMessage(data)
+                    this.$alert('登陆成功','提示')
+                }else{
+                    this.$alert(`${res.data.msg}`, '登陆失败', {
+                        confirmButtonText: '确定'
+                    })               
+                }
+            })
+        }else{//短信验证码登录
+            let username = this.phone
+            let code = this.password
+            phoneCodeLogin({username,code}).then(res=>{
+                if(res.data.code == 1){
+                    let data = res.data.data
+                    data = JSON.stringify(data)
+                    this.saveUserMessage(data)
+                }
+                this.$alert(`${res.data.msg}`,'提示')
+            })
+        }
       },
       saveUserMessage(data){//保存用户信息
         localStorage.setItem('nc_user',data)
+      },
+      //获取验证码
+      getPhoneCode(){
+          let phone = this.phone
+          let event = 'login'
+          getCode({phone,event,}).then(res=>{
+              if(res.data.code == 1){
+                  this.timer = 60
+                setInterval(() => {
+                    if(this.timer >= 1){
+                        this.timer -= 1
+                    }else{
+
+                    }               
+                }, 1000)
+              }
+              this.$alert(`${res.data.msg}`,`提示`)
+          }).catch(err=>{
+              this.$alert('请求失败','提示')
+          })
       }
     },
     created(){

@@ -43,7 +43,9 @@
                 <PublishItem
                 v-for="(v,k,index) in wxalArray"
                 :key="index"
-                publish-text='长沙为何会吸引大型企业入驻？腾讯为，富士康都包括在内？'
+                :publish-text='v.introduction'
+                
+                @click.native='handleToDetail(v.alias,v.id)'
                 />
             </div>
             <ColorTabBar 
@@ -65,8 +67,9 @@
 <script>
 import ColorTabBar from '../../components/content/commonMessageComponent/ColorTab'
 import CommonTitle from '../../components/content/commonPartOne/CommonTitle'
+import PublishItem from '../../components/content/commonMessageComponent/PublishItem'
 
-import {getTagesArr,} from '@/api/home.js'
+import {getTagesArr,getArticle,} from '@/api/home.js'
 import {getArticleMessageById,} from '@/api/article'
 
 export default {
@@ -99,29 +102,47 @@ data() {
             }
         ],
         articleObject:null,//文章对象
+        wxalArray:[],
     }
 },
 //方法集合
 methods: {
     //获取热门标签
     getHotTags(){
-        getTagesArr().then(res=>{
+        getTagesArr()
+        .then(res=>{
             if(res.data.code == 1){
                 this.tagArr = res.data.data
+                return getArticle()
             }else{
                 this.$alert(`res.data.msg`,'提示')
             }
         })
+        .then(res=>{
+            if(res.data.code == 1){
+                this.wxalArray = res.data.data
+            }else{
+                this.$alert('获取数据失败','提示')
+            }
+        })
+    },
+    //点击最新发布跳转到文章详情页
+    //没有传alias和id给子组件去处理了
+    //改页面的这个跳转到文章详情页是该组件自己特殊处理
+    handleToDetail(alias,id){
+        // console.log(this.$router)
+        this.$router.replace(`${alias + '/' + id + '.html'}`)
+        // this.$router.replace('/')
     }
 },
 //接收props传值
-props: ['fixArr','wxalArray','wxalArrayTop2',],
+props: [],
 //监听属性 类似于data概念
 computed: {},
 //监控data中的数据变化
 watch: {},
 //注册组件
-components: {ColorTabBar,CommonTitle,},
+components: {ColorTabBar,CommonTitle,PublishItem,},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
     this.getHotTags()
