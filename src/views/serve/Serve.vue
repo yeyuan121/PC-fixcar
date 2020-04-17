@@ -100,13 +100,17 @@ mounted() {
 <style lang='scss' scoped>
     .container{
         .flex_container{
-            display: flex;
-            justify-content: space-between;
+            // display: flex;
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 1fr 1fr 1fr;
+            // justify-content: ;
             flex-wrap: wrap;
             padding: 0 4rem;
             padding-bottom: 0.5rem;
             box-sizing: border-box;
             div{
+                justify-self: center;
                 margin-bottom: 0.25rem;
             }
         }

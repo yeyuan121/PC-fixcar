@@ -50,7 +50,7 @@ export default {
       slideritem
     },
     created(){
-      getCarousel().then(res=>{
+      getCarousel({type:1,}).then(res=>{
         if(res.data.code == 1){
           this.carouselArr = res.data.data
         }else{

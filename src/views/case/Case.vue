@@ -118,6 +118,7 @@ props:[],
 computed: {},
 //钩子函数
 created() {
+    console.log(this.allArticleArray,222)
     getAllArticleList().then(res=>{
         if(res.data.code == 1){
             this.dealInitData(res.data.data)
@@ -126,8 +127,11 @@ created() {
             alert('获取数据失败')
         }
     })
+    console.log(this.allArticleArray[this.current],333)
 },
-mounted() {}
+mounted() {
+    
+}
 }
 </script>
 <style lang='scss' scoped>

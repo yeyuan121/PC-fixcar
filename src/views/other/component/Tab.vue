@@ -31,7 +31,7 @@
 export default {
 data() {
     return {
-        current:0,
+        current:1,
     }
 },
 //方法集合
@@ -51,7 +51,11 @@ watch: {},
 components: {},
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
-
+    //默认把第一个tab的ID在 我刚创建的时候就传给父组件
+    setTimeout(() => {
+        this.$emit('event',this.current)
+    }, 500)
+    
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
 mounted() {
